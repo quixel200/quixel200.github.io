@@ -92,3 +92,16 @@ blockquote{
     padding:1em 1.5em;
     border-left: 1px solid green;
 }
+
+pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: monospace;
+  overflow-x: auto;
+}
+
+pre code{
+  border: none;
+}

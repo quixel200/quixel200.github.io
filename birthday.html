@@ -476,7 +476,7 @@
 
 <!-- -->
 <svg id="intro_title" style="display:none" class="thin" viewBox="0 0 850 100">
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Hello</text>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Happy Birthday Hadassah!</text>
 </svg>
 <div class="overlay" id="overlay1"></div>
 <div class="overlay" id="overlay2"></div>
@@ -641,7 +641,7 @@ function time2beat(t, bpm=SONG_BPM) {
 
 function trimIntroTitlePath(t) {
 	const text = intro_title.querySelector("text");
-	text.style.strokeDasharray = 595*t + " 1000";
+	text.style.strokeDasharray = 2000*t + " 1000";
 	text.style.strokeDashoffset = -100*(1-t);
 }
 

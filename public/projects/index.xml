@@ -2,11 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on quixel200</title>
-    <link>http://localhost:1313/projects/</link>
+    <link>https://quixel200.github.io/projects/</link>
     <description>Recent content in Projects on quixel200</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Aug 2025 15:11:33 +0530</lastBuildDate>
+    <atom:link href="https://quixel200.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SMS</title>
+      <link>https://quixel200.github.io/projects/sms/</link>
+      <pubDate>Mon, 18 Aug 2025 15:11:33 +0530</pubDate>
+      <guid>https://quixel200.github.io/projects/sms/</guid>
+      <description>&lt;h1 id=&#34;student-management-system-sms&#34;&gt;Student Management System (SMS)&lt;/h1&gt;&#xA;&lt;p&gt;A full stack web app developed with HTML, Bootstrap, JavaScript, jQuery, PHP and MySQL designed to help faculty and students manage various academic and administrative activities.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Developed with the help of:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Karthiban R&lt;/strong&gt; (our mentor and team lead)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kavinnandha&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Archana&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Keren&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Liyander Rishwanth&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Harish Kumar&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The application will be primarily used for automating log generation and the attendance of each class. It also has many features such as requesting and approving leaves, a front-end for database upload and editing, and dashboards for various roles.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

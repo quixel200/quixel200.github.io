@@ -12,6 +12,6 @@ The best CTF I've ever participated in, securing 28th place! It contains a lot o
 
 A simple beginner level CTF challenge on TryHackMe for anyone interested in getting into cybersecurity!
 
-## [$N1PH€RS 2.0 CTF](writeups/sniphers_2.html)
+## [$N1PH€RS 2.0 CTF](/writeups/sniphers)
 
 An offline CTF conducted by [Tamil CTF](https://www.tamilctf.com/) and [The Sniphers Club](https://www.linkedin.com/company/sniphers-club/).

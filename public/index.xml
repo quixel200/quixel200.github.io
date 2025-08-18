@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>quixel200</title>
-    <link>http://localhost:1313/</link>
+    <link>https://quixel200.github.io/</link>
     <description>Recent content on quixel200</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 18 Aug 2025 10:24:25 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Aug 2025 15:11:33 +0530</lastBuildDate>
+    <atom:link href="https://quixel200.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SMS</title>
+      <link>https://quixel200.github.io/projects/sms/</link>
+      <pubDate>Mon, 18 Aug 2025 15:11:33 +0530</pubDate>
+      <guid>https://quixel200.github.io/projects/sms/</guid>
+      <description>&lt;h1 id=&#34;student-management-system-sms&#34;&gt;Student Management System (SMS)&lt;/h1&gt;&#xA;&lt;p&gt;A full stack web app developed with HTML, Bootstrap, JavaScript, jQuery, PHP and MySQL designed to help faculty and students manage various academic and administrative activities.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Developed with the help of:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Karthiban R&lt;/strong&gt; (our mentor and team lead)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kavinnandha&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Archana&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Keren&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Liyander Rishwanth&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Harish Kumar&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The application will be primarily used for automating log generation and the attendance of each class. It also has many features such as requesting and approving leaves, a front-end for database upload and editing, and dashboards for various roles.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>The OSI Model</title>
-      <link>http://localhost:1313/articles/osi-model/</link>
+      <link>https://quixel200.github.io/articles/osi-model/</link>
       <pubDate>Mon, 18 Aug 2025 10:24:25 +0530</pubDate>
-      <guid>http://localhost:1313/articles/osi-model/</guid>
+      <guid>https://quixel200.github.io/articles/osi-model/</guid>
       <description>&lt;h1 id=&#34;osi-model&#34;&gt;OSI Model&lt;/h1&gt;&#xA;&lt;p&gt;Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&amp;rsquo;t worry if it&amp;rsquo;s not clear. I will update it later with the full explanation.&lt;/p&gt;&#xA;&lt;p&gt;The Open Systems Interconnection (OSI) model is a &lt;strong&gt;reference model&lt;/strong&gt; developed by the International Organization for Standardization (ISO) that &amp;ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.&lt;/p&gt;</description>
     </item>
   </channel>

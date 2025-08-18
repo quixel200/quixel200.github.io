@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>The OSI Model :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="OSI Model Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&rsquo;t worry if it&rsquo;s not clear. I will update it later with the full explanation.
+The Open Systems Interconnection (OSI) model is a reference model developed by the International Organization for Standardization (ISO) that &ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/articles/osi-model/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.775ac2af004d44c22a6d000fbd1d9af529642f5cef27399d0280d180af2c2e9b.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.310d32205bdedd6f43144e3c3273c9deecd238eba5f9108db5ea96ca0cfbe377.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.ad50c7f4d00e7975918f37fc74c6029e1959a40d66fb5b2c6564a8715e985573.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.e9ab635cf918bc84b901eb65c0b2caa74c9544245e3647c1af5c129896ef276e.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.b9fcf12f2827d468ddb6580a4de4fb1f7e8ce515cea5b1d07444aecd8e1b6bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The OSI Model">
+<meta property="og:description" content="OSI Model Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&rsquo;t worry if it&rsquo;s not clear. I will update it later with the full explanation.
+The Open Systems Interconnection (OSI) model is a reference model developed by the International Organization for Standardization (ISO) that &ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.
+" />
+<meta property="og:url" content="http://localhost:1313/articles/osi-model/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-08-18 10:24:25 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/articles/osi-model/">The OSI Model</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-08-18</time></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="osi-model">OSI Model<a href="#osi-model" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&rsquo;t worry if it&rsquo;s not clear. I will update it later with the full explanation.</p>
+<p>The Open Systems Interconnection (OSI) model is a <strong>reference model</strong> developed by the International Organization for Standardization (ISO) that &ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.</p>
+<p>The <strong>TCP/IP</strong> Model is what is widely used in practical networking and forms the foundation of the internet.</p>
+<p>For the actual specifications, we can view the RFC&rsquo;s:</p>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc1122">RFC 1122</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc1123">RFC 1123</a></li>
+</ul>
+<p>These documents give a structured specification for implementation.</p>
+<h2 id="the-seven-layers-of-the-osi-model">The seven layers of the OSI model<a href="#the-seven-layers-of-the-osi-model" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<table>
+  <thead>
+      <tr>
+          <th>S.No</th>
+          <th>Layer</th>
+          <th>Role</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>7</td>
+          <td>Application Layer</td>
+          <td>interacts directly with the user data, think of it as an interface for the applications to use.</td>
+          <td>HTTP,FTP,SMTP,SSH</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>Presentation Layer</td>
+          <td>makes the data presentable for the application layer, responsible for translation,encryption or compression</td>
+          <td>TLS</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Session Layer</td>
+          <td>opening, maintaing and closing communication between the two devices. It synchornizes the data transfer and keeps the connection alive</td>
+          <td>TCP</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Transport Layer</td>
+          <td>responsible for end-to-end communication. This includes taking data from the session layer and breaking it up into chunks called segments before sending it to layer 3.</td>
+          <td>TCP</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Network Layer</td>
+          <td>facilitates data transfer between two different networks, breaks up segments into smaller units called packets. Finds the best physical path(routing)</td>
+          <td>IP,ICMP</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Data Link layer</td>
+          <td>physical addressing on the local network segment, finding where to deliver the data</td>
+          <td>MAC addresses, ethernet frames</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Physical Layer</td>
+          <td>The physical medium/connection between the devices such as cables and switches</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="the-tcpip-model">The TCP/IP model<a href="#the-tcpip-model" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<table>
+  <thead>
+      <tr>
+          <th>S.No</th>
+          <th>Layer</th>
+          <th>Role</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>4</td>
+          <td>Application Layer</td>
+          <td>OSI model’s Application, Presentation, and Session layers.</td>
+          <td>HTTP, FTP, SMTP</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Transport Layer</td>
+          <td>provides reliable communication between devices</td>
+          <td>UDP,TCP</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Internet Layer</td>
+          <td>manages routing, ensuring data packets reach the correct destination.</td>
+          <td>IP,ICMP</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Network Access Layer</td>
+          <td>Also known as the Link layer, it covers physical transmission and access to network media.</td>
+          <td>Ethernet, Wi-Fi</td>
+      </tr>
+  </tbody>
+</table>
+<p>The TCP/IP model is practical, straightforward, and essential for modern networking, while the OSI model is valued for its clarity and is a powerful tool for diagnosing network issues.</p>
+<h1 id="understanding-how-protocols-work">Understanding how protocols work<a href="#understanding-how-protocols-work" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>They are a standard way for computers to communicate with each other. Just like languages for us, computers have protocols.</p>
+<p>They define the &ldquo;grammar&rdquo; and structure of the message, such as:</p>
+<ul>
+<li>what does this part of the packet signify?</li>
+<li>in what structure should I send the message?</li>
+</ul>
+<p>We will be directly communicating with the protocol using <code>netcat</code>
+netcat is a simple unix utility which reads and writes data across network connections, using TCP or UDP protocol.
+<a href="https://www.commandlinux.com/man-page/man1/nc.1.html">https://www.commandlinux.com/man-page/man1/nc.1.html</a></p>
+<h1 id="the-two-generals-problem">The two generals&rsquo; problem<a href="#the-two-generals-problem" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p><img src="2-generals.png" alt="image"></p>
+<p>TCP cannot guarantee state consistency between endpoints</p>
+<h1 id="a-practical-example-with-wireshark">A Practical example with Wireshark<a href="#a-practical-example-with-wireshark" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>I will be sending a test email to myself on localhost using the SMTP protocol. SMTP works on port 25 by default, lets connect to it using netcat</p>
+<p><code>nc localhost 25</code></p>
+<pre tabindex="0"><code>[quix@quixel osi-model]$ nc localhost 25
+220 quixel.localdomain ESMTP Postfix
+HELO localhost
+250 quixel.localdomain
+MAIL FROM:&lt;me@localhost&gt; 
+250 2.1.0 Ok
+RCPT TO:&lt;quix@localhost&gt;
+250 2.1.5 Ok
+DATA
+354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+subject: test mail
+
+This is a test mail to demonstrate the OSI model
+.
+250 2.0.0 Ok: queued as 406BF140A8C
+QUIT
+221 2.0.0 Bye
+</code></pre><ul>
+<li><strong>HELO/EHLO</strong> - initiates the SMTP session.</li>
+<li><strong>MAIL FROM</strong> - senders email address</li>
+<li><strong>RCPT TO</strong> - receivers mail</li>
+<li><strong>DATA</strong> - start of the email message body, end with a <code>.</code></li>
+<li><strong>QUIT</strong> - end the SMTP session</li>
+</ul>
+<p>Mails are usually stored in <code>/var/spool/mail/&lt;username&gt;</code></p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

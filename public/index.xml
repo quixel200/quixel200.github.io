@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>quixel200</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on quixel200</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 18 Aug 2025 10:24:25 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The OSI Model</title>
+      <link>http://localhost:1313/articles/osi-model/</link>
+      <pubDate>Mon, 18 Aug 2025 10:24:25 +0530</pubDate>
+      <guid>http://localhost:1313/articles/osi-model/</guid>
+      <description>&lt;h1 id=&#34;osi-model&#34;&gt;OSI Model&lt;/h1&gt;&#xA;&lt;p&gt;Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&amp;rsquo;t worry if it&amp;rsquo;s not clear. I will update it later with the full explanation.&lt;/p&gt;&#xA;&lt;p&gt;The Open Systems Interconnection (OSI) model is a &lt;strong&gt;reference model&lt;/strong&gt; developed by the International Organization for Standardization (ISO) that &amp;ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

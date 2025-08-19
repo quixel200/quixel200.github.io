@@ -14,4 +14,4 @@ There will be very little or nothing new to learn here, you need to combine prev
 
 - Read the server code, it doesn't change much from 1-5 and it will help you a lot. (When I say read I mean understand each and every line)
 
-- SC3 is probably the hardest spike, the rest should be easier.(Hint: It's a padding oracle attack)
+- SC3 is probably the hardest spike, the rest should be easier.(Hint: you need to find a way to decrypt the chat, remember what you learnt in the cryptography module against ECB encryption)

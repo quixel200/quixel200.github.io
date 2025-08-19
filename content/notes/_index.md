@@ -1,16 +1,14 @@
 +++
 date = '2025-08-18T10:17:46+05:30'
-draft = true
+draft = false 
 title = 'Notes'
 +++
 
 # pwn.college 
 
-## orange belt 
+## [Intro to Cybersecurity(orange belt)](/notes/intro_to_cybersecurity)
 
-- [web security](/notes/pwncollege/websecurity)
+Would you like to delve into the arcane world of cybersecurity? You will need patience and persistence... A lot of it.
+A collection of notes,references and links that might save you a few hours of time.
+ - Note: Do no expect solutions here.
 
-
-## yellow belt 
-
-- [topics]()

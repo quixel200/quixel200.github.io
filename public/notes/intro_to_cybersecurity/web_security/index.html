@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.148.2">
   
-    <title>quixel200</title>
+    <title>Web Security :: quixel200</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A personal website where I post about stuff I do" />
+<meta name="description" content="Path Traversal The description is more than enough to solve these. This might seem very simple but it happens more often than you think curl hates relative paths, it will resolve paths automatically, read the man pages to know more.I would recommend using python for testing. Command Injection The only hint for level 6: Think of every character you can use. Think about how you run multiple commands in your terminal or in a bash script SQL injection If you understand how SQL injection works, you&rsquo;ll breeze through these, if not, watch the lecture video again XSS Before trying anything, cat the source code and understand what it&rsquo;s doing.
+" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="https://quixel200.github.io/" />
+<link rel="canonical" href="https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/" />
 
 
 
@@ -77,10 +77,11 @@
 
 
 <meta property="og:locale" content="en" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="quixel200">
-<meta property="og:description" content="A personal website where I post about stuff I do" />
-<meta property="og:url" content="https://quixel200.github.io/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Web Security">
+<meta property="og:description" content="Path Traversal The description is more than enough to solve these. This might seem very simple but it happens more often than you think curl hates relative paths, it will resolve paths automatically, read the man pages to know more.I would recommend using python for testing. Command Injection The only hint for level 6: Think of every character you can use. Think about how you run multiple commands in your terminal or in a bash script SQL injection If you understand how SQL injection works, you&rsquo;ll breeze through these, if not, watch the lecture video again XSS Before trying anything, cat the source code and understand what it&rsquo;s doing.
+" />
+<meta property="og:url" content="https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/" />
 <meta property="og:site_name" content="quixel200" />
 
   <meta property="og:image" content="https://quixel200.github.io/og-image.png">
@@ -89,10 +90,10 @@
 <meta property="og:image:height" content="627">
 
 
+  <meta property="article:published_time" content="2025-08-18 16:00:25 &#43;0530 IST" />
 
 
 
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
 
 
 
@@ -180,55 +181,63 @@
 
   <div class="content">
     
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/">Web Security</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-08-18</time></div>
+
   
-    <div class="index-content ">
-      <h1 id="about-me">About Me</h1>
-<p>I am a passionate and detail-oriented cybersecurity enthusiast currently pursuing Computer Science and Engineering with a specialization in Cyber Security. I maintain a CGPA of 8.92 and am actively participating in various cybersecurity competitions.</p>
-<p>I have strong experience in Capture The Flag (CTF) challenges, reverse engineering, and binary exploitation. My technical skills span across malware analysis, web exploitation, red teaming, and scripting with Python. I&rsquo;m proficient in low-level programming languages like C and Assembly, and have a deep understanding of system internals.</p>
-<p>Currently, I&rsquo;m working as a Content Creation Intern at Bridge International, where I create and research educational content for cybersecurity courses including Red Teaming and Android penetration testing.</p>
-<p>I enjoy coding and working on various <a href="/projects/">projects</a> in my spare time. I also write <a href="/articles/">articles</a> and CTF writeups to share my knowledge with the cybersecurity community.</p>
-<p>As a co-founder of MeowSec CTF team, I actively maintain and participate in CTF competitions with a team of 7-8 players. I&rsquo;m also a member of TamilCTF, focusing on binary exploitation and reverse engineering challenges.</p>
-<h1 id="achievements">Achievements</h1>
-<ul>
-<li><strong>Orange Belt</strong> at <a href="https://pwn.college/hacker/52735">pwn.college</a> - An educational platform maintained by Arizona State University</li>
-<li><strong>3rd Place</strong> in <a href="https://quixel200.github.io/writeups/sniphers_2.html">$N1PH€RS 2.0 CTF</a> conducted by Tamil CTF</li>
-<li><strong>1st Place</strong> in KI CTF conducted at Kumaraguru Institute of Engineering and Technology</li>
-<li><strong>1st Place</strong> in ExploitX CTF conducted at KPR Institute of Engineering and Technology</li>
-<li><strong>511th place</strong> out of 8000 teams in <a href="https://www.linkedin.com/posts/keerthi-raghavan_certificate-activity-7311286923333877760-DGKv?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAER2mMQBSeNAJByUUT93f7YNyQcDjqDpQwQ">HackTheBox Cyber Apocalypse CTF 2025</a></li>
-<li><strong>Top 30</strong> in LevelEffect CTF 2024</li>
-</ul>
-<h1 id="certifications">Certifications</h1>
-<ul>
-<li><strong>Practical Malware Analysis and Triage</strong> - TCM Security</li>
-<li><strong>Practical Ethical Hacking</strong> - TCM Security</li>
-<li><strong>Linux 101</strong> - TCM Security</li>
-</ul>
-<h1 id="languages">Languages</h1>
-<p>I&rsquo;m multilingual and can communicate in English, Tamil, Kannada, Hindi, and Telugu.</p>
-
-    </div>
   
-  <div class="posts">
-    
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="path-traversal">Path Traversal<a href="#path-traversal" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>The description is more than enough to solve these. This might seem very simple but it <a href="https://hackernoon.com/a-deep-dive-into-path-traversal-vulnerabilities">happens more often than you think</a></li>
+<li><strong>curl hates relative paths</strong>, it will resolve paths automatically, read the man pages to know more.I would recommend using python for testing.</li>
+</ul>
+<h1 id="command-injection">Command Injection<a href="#command-injection" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>The only hint for level 6:
+Think of <em>every</em> character you can use. Think about how you run multiple commands in your terminal or in a bash script</li>
+</ul>
+<h1 id="sql-injection">SQL injection<a href="#sql-injection" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li>If you understand how SQL injection works, you&rsquo;ll breeze through these, if not, watch the lecture video again</li>
+</ul>
+<h1 id="xss">XSS<a href="#xss" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Before trying anything, cat the source code and understand what it&rsquo;s doing.</p>
+<ul>
+<li>Verify your payloads, especially if they&rsquo;re multi-stage. Use the inspect source to your advantage.</li>
+</ul>
+<h1 id="csrf">CSRF<a href="#csrf" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Basic python flask server template, in case you&rsquo;re too lazy to copy paste from the source code</p>
+<pre tabindex="0"><code>import flask
+import os
+
+app = flask.Flask(__name__)
+
+
+@app.route(&#34;/&#34;, methods=[&#34;GET&#34;])
+def challenge():
+    return &#34;hello&#34;
+
+
+app.secret_key = os.urandom(8)
+app.run(&#34;localhost&#34;, 1337)
+</code></pre>
+      </div></div>
+
+  
+
+  
     
 
-    
-    
-      
-    
-    
-
-    
-
-    <div class="pagination">
-  <div class="pagination__buttons">
-    
-    
-    
-  </div>
-</div>
-
-  </div>
+  
+</article>
 
   </div>
 

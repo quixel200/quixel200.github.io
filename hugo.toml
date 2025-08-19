@@ -83,7 +83,7 @@ pagination.pagerSize = 5
     title = "quixel200"
 
     [languages.en.params]
-      subtitle = "A simple, retro theme for Hugo"
+      subtitle = "A personal website where I post about stuff I do"
       owner = ""
       keywords = ""
       copyright = ""

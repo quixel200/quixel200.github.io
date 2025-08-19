@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>quixel200</title>
-    <link>https://quixel200.github.io/</link>
-    <description>Recent content on quixel200</description>
+    <title>Intro to Cybersecurity on quixel200</title>
+    <link>https://quixel200.github.io/notes/intro_to_cybersecurity/</link>
+    <description>Recent content in Intro to Cybersecurity on quixel200</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 19 Aug 2025 08:51:29 +0530</lastBuildDate>
-    <atom:link href="https://quixel200.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://quixel200.github.io/notes/intro_to_cybersecurity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Integrated Security</title>
       <link>https://quixel200.github.io/notes/intro_to_cybersecurity/integrated_security/</link>
@@ -56,20 +56,6 @@
       <pubDate>Mon, 18 Aug 2025 16:00:25 +0530</pubDate>
       <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/</guid>
       <description>&lt;h1 id=&#34;path-traversal&#34;&gt;Path Traversal&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The description is more than enough to solve these. This might seem very simple but it &lt;a href=&#34;https://hackernoon.com/a-deep-dive-into-path-traversal-vulnerabilities&#34;&gt;happens more often than you think&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;curl hates relative paths&lt;/strong&gt;, it will resolve paths automatically, read the man pages to know more.I would recommend using python for testing.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;command-injection&#34;&gt;Command Injection&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The only hint for level 6:&#xA;Think of &lt;em&gt;every&lt;/em&gt; character you can use. Think about how you run multiple commands in your terminal or in a bash script&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;sql-injection&#34;&gt;SQL injection&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If you understand how SQL injection works, you&amp;rsquo;ll breeze through these, if not, watch the lecture video again&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;xss&#34;&gt;XSS&lt;/h1&gt;&#xA;&lt;p&gt;Before trying anything, cat the source code and understand what it&amp;rsquo;s doing.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>SMS</title>
-      <link>https://quixel200.github.io/projects/sms/</link>
-      <pubDate>Mon, 18 Aug 2025 15:11:33 +0530</pubDate>
-      <guid>https://quixel200.github.io/projects/sms/</guid>
-      <description>&lt;h1 id=&#34;student-management-system-sms&#34;&gt;Student Management System (SMS)&lt;/h1&gt;&#xA;&lt;p&gt;A full stack web app developed with HTML, Bootstrap, JavaScript, jQuery, PHP and MySQL designed to help faculty and students manage various academic and administrative activities.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Developed with the help of:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Karthiban R&lt;/strong&gt; (our mentor and team lead)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kavinnandha&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Archana&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Keren&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Liyander Rishwanth&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Harish Kumar&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The application will be primarily used for automating log generation and the attendance of each class. It also has many features such as requesting and approving leaves, a front-end for database upload and editing, and dashboards for various roles.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>The OSI Model</title>
-      <link>https://quixel200.github.io/articles/osi-model/</link>
-      <pubDate>Mon, 18 Aug 2025 10:24:25 +0530</pubDate>
-      <guid>https://quixel200.github.io/articles/osi-model/</guid>
-      <description>&lt;h1 id=&#34;osi-model&#34;&gt;OSI Model&lt;/h1&gt;&#xA;&lt;p&gt;Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&amp;rsquo;t worry if it&amp;rsquo;s not clear. I will update it later with the full explanation.&lt;/p&gt;&#xA;&lt;p&gt;The Open Systems Interconnection (OSI) model is a &lt;strong&gt;reference model&lt;/strong&gt; developed by the International Organization for Standardization (ISO) that &amp;ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

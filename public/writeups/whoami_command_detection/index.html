@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
   
-    <title>Write-ups :: quixel200</title>
+    <title>whoami Command Detection in Request Body :: quixel200</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Leveleffect 2024 The best CTF I&rsquo;ve ever participated in, securing 28th place! It contains a lot of unique challenges that included blue teaming and SOC stuff instead of the typical red teaming. Learned quite a lot and I wish there were more CTF&rsquo;s like this.
-Simple CTF - TryHackMe A simple beginner level CTF challenge on TryHackMe for anyone interested in getting into cybersecurity!
-$N1PH€RS 2.0 CTF An offline CTF conducted by Tamil CTF and The Sniphers Club.
+<meta name="description" content="Let&rsquo;s investigate a potential command injection alert on letsdefend.io
+The alert generated was:
+The request was sent to the URL https://172.16.17.16/video/ (hostname is WebServer1004).
+Let&rsquo;s first take a look at the log files and filter for the URL in the raw logs. Filtering helps us skip through manually looking at each log which can get pretty tedious.
+Taking a look at the detailed log output, we can see that the user ran whoami using the c post paramter.
 " />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="https://quixel200.github.io/writeups/" />
+<link rel="canonical" href="https://quixel200.github.io/writeups/whoami_command_detection/" />
 
 
 
@@ -80,12 +82,14 @@ $N1PH€RS 2.0 CTF An offline CTF conducted by Tamil CTF and The Sniphers Club.
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Write-ups">
-<meta property="og:description" content="Leveleffect 2024 The best CTF I&rsquo;ve ever participated in, securing 28th place! It contains a lot of unique challenges that included blue teaming and SOC stuff instead of the typical red teaming. Learned quite a lot and I wish there were more CTF&rsquo;s like this.
-Simple CTF - TryHackMe A simple beginner level CTF challenge on TryHackMe for anyone interested in getting into cybersecurity!
-$N1PH€RS 2.0 CTF An offline CTF conducted by Tamil CTF and The Sniphers Club.
+<meta property="og:title" content="whoami Command Detection in Request Body">
+<meta property="og:description" content="Let&rsquo;s investigate a potential command injection alert on letsdefend.io
+The alert generated was:
+The request was sent to the URL https://172.16.17.16/video/ (hostname is WebServer1004).
+Let&rsquo;s first take a look at the log files and filter for the URL in the raw logs. Filtering helps us skip through manually looking at each log which can get pretty tedious.
+Taking a look at the detailed log output, we can see that the user ran whoami using the c post paramter.
 " />
-<meta property="og:url" content="https://quixel200.github.io/writeups/" />
+<meta property="og:url" content="https://quixel200.github.io/writeups/whoami_command_detection/" />
 <meta property="og:site_name" content="quixel200" />
 
   <meta property="og:image" content="https://quixel200.github.io/og-image.png">
@@ -94,12 +98,12 @@ $N1PH€RS 2.0 CTF An offline CTF conducted by Tamil CTF and The Sniphers Club.
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2025-08-18 10:13:54 &#43;0530 IST" />
+  <meta property="article:published_time" content="2025-08-23 08:28:22 &#43;0530 IST" />
 
 
 
 
-  <link href="/writeups/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
+  <link href="/writeups/whoami_command_detection/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
 
 
 
@@ -189,14 +193,37 @@ $N1PH€RS 2.0 CTF An offline CTF conducted by Tamil CTF and The Sniphers Club.
     
   
     <div class="index-content">
-      <h2 id="leveleffect-2024"><a href="https://github.com/quixel200/Leveleffect-2024-CTF-Writeups">Leveleffect 2024</a></h2>
-<p>The best CTF I&rsquo;ve ever participated in, securing 28th place! It contains a lot of unique challenges that included blue teaming and SOC stuff instead of the typical red teaming. Learned quite a lot and I wish there were more CTF&rsquo;s like this.</p>
-<h2 id="simple-ctf---tryhackme"><a href="/writeups/simplectf/">Simple CTF - TryHackMe</a></h2>
-<p>A simple beginner level CTF challenge on TryHackMe for anyone interested in getting into cybersecurity!</p>
-<h2 id="n1phrs-20-ctf"><a href="/writeups/sniphers/">$N1PH€RS 2.0 CTF</a></h2>
-<p>An offline CTF conducted by <a href="https://www.tamilctf.com/">Tamil CTF</a> and <a href="https://www.linkedin.com/company/sniphers-club/">The Sniphers Club</a>.</p>
-<h2 id="letsdefend-soc"><a href="/writeups/whoami_command_detection/">Letsdefend SOC</a></h2>
-<p>A writeup for the whoami command detection alert on letsdefend.io</p>
+      <p>Let&rsquo;s investigate a potential command injection alert on <a href="https://letsdefend.io/">letsdefend.io</a></p>
+<p>The alert generated was:</p>
+<p><img src="/writeups/whoami_command_detection/images/siem_alert.png" alt="siem alert"></p>
+<p>The request was sent to the URL <code>https://172.16.17.16/video/</code> (hostname is WebServer1004).</p>
+<p>Let&rsquo;s first take a look at the log files and filter for the URL in the raw logs. Filtering helps us skip through manually looking at each log which can get pretty tedious.</p>
+<p><img src="/writeups/whoami_command_detection/images/log_filtering.png" alt="log filtering"></p>
+<p>Taking a look at the detailed log output, we can see that the user ran <code>whoami</code> using the <code>c</code> post paramter.</p>
+<p><img src="/writeups/whoami_command_detection/images/whoami_command.png" alt="whoami command"></p>
+<p>The user also ran 2 other commands, the most important of which is <code>cat /etc/shadow</code>. The shadow file contains the hashed passwords of the users which the attacker could potentially crack with a weak enough password.</p>
+<p><img src="/writeups/whoami_command_detection/images/shadow_file_extraction.png" alt="shadow file extraction"></p>
+<p>Although it returns a response code of 200 (success) it might not have actually run the command. So we should check the host on endpoint security and see the terminal history.</p>
+<p><img src="/writeups/whoami_command_detection/images/terminal_history.png" alt="terminal history"></p>
+<p>The commands were run successfully which means the attacker succeeded, our next priority should be to isolate the machine and escalate the incident. The escalation is necessary due to the high severity of the vulnerability.</p>
+<p>We will also add the malicious IP to the artifacts
+<img src="/writeups/whoami_command_detection/images/artifacts.png" alt="malicious IP artifact"></p>
+<h2 id="is-traffic-malicious">Is traffic malicious?</h2>
+<p>Yes, clearly the attacker was trying to gain sensitive information from the system.</p>
+<h2 id="what-is-the-attack-type">What is the attack type?</h2>
+<p>This is a command injection vulnerability that allows attackers to run arbitrary commands on the host system</p>
+<h2 id="was-the-attack-a-planned-test">Was the attack a planned test?</h2>
+<p>Checking the emails, we don&rsquo;t see any indication that a test was planned during the time of the attack.</p>
+<h2 id="what-is-the-direction-of-traffic">What is the direction of traffic?</h2>
+<p>The source IP is an IP that is outside the company network.
+Internet -&gt; company network</p>
+<h2 id="was-the-attack-successful">Was the attack successful?</h2>
+<p>Yes, we see 200 status codes and the corresponding command being run on the host.</p>
+<h2 id="is-a-tier-2-escalation-needed">is a tier 2 escalation needed?</h2>
+<p>Yes</p>
+<h2 id="my-analysis-notes">My analysis notes</h2>
+<p><img src="/writeups/whoami_command_detection/images/analyst_note.png" alt="analysis_notes"></p>
+<p>Any feedback is welcome as I am still learning, thank you for reading and have fun learning!</p>
 
     </div>
   

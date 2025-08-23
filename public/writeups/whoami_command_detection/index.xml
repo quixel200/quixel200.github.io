@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>whoami Command Detection in Request Body on quixel200</title>
+    <link>https://quixel200.github.io/writeups/whoami_command_detection/</link>
+    <description>Recent content in whoami Command Detection in Request Body on quixel200</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://quixel200.github.io/writeups/whoami_command_detection/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

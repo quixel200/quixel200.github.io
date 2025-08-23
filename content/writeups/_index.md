@@ -15,3 +15,7 @@ A simple beginner level CTF challenge on TryHackMe for anyone interested in gett
 ## [$N1PH€RS 2.0 CTF](/writeups/sniphers)
 
 An offline CTF conducted by [Tamil CTF](https://www.tamilctf.com/) and [The Sniphers Club](https://www.linkedin.com/company/sniphers-club/).
+
+## [Letsdefend SOC](/writeups/whoami_command_detection)
+
+A writeup for the whoami command detection alert on letsdefend.io

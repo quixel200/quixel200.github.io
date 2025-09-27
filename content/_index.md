@@ -13,7 +13,7 @@ As a co-founder of MeowSec CTF team, I actively maintain and participate in CTF 
 
 # Achievements
 
-- **Orange Belt** at [pwn.college](https://pwn.college/hacker/52735) - An educational platform maintained by Arizona State University
+- **Yellow Belt** at [pwn.college](https://pwn.college/hacker/52735) - An educational platform maintained by Arizona State University
 - **3rd Place** in [$N1PH€RS 2.0 CTF](https://quixel200.github.io/writeups/sniphers_2.html) conducted by Tamil CTF
 - **1st Place** in KI CTF conducted at Kumaraguru Institute of Engineering and Technology
 - **1st Place** in ExploitX CTF conducted at KPR Institute of Engineering and Technology

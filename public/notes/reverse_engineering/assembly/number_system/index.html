@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   
-    <title>Reverse_engineering :: quixel200</title>
+    <title>Number Systems :: quixel200</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="work in progress&hellip; sorry Dig deeper. Assembly(x86) Number systems Registers The stack and the heap Writing assembly Correlating C and assembly disassemblers and decompilers Classic Crackme 0x100(picoCTF) " />
+<meta name="description" content="Each base follows a pattern and you can clearly see that from the examples.
+Hexadecimal (Base 16) Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).
+0x2f is 48 in decimal 2 f (16^1)*2 &#43; (16^0)*16(f = 16) Decimal (Base 10) The one we&rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.
+25 2 5 (10^1)*2 &#43; (10^0)*5 Octal (Base 8) Contains numbers 0-7, each digit representing 3 bits. If you&rsquo;re familiar with Linux file permissions you already know Octal.
+" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="https://quixel200.github.io/notes/reverse_engineering/" />
+<link rel="canonical" href="https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/" />
 
 
 
@@ -76,10 +80,14 @@
 
 
 <meta property="og:locale" content="en" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Reverse_engineering">
-<meta property="og:description" content="work in progress&hellip; sorry Dig deeper. Assembly(x86) Number systems Registers The stack and the heap Writing assembly Correlating C and assembly disassemblers and decompilers Classic Crackme 0x100(picoCTF) " />
-<meta property="og:url" content="https://quixel200.github.io/notes/reverse_engineering/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Number Systems">
+<meta property="og:description" content="Each base follows a pattern and you can clearly see that from the examples.
+Hexadecimal (Base 16) Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).
+0x2f is 48 in decimal 2 f (16^1)*2 &#43; (16^0)*16(f = 16) Decimal (Base 10) The one we&rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.
+25 2 5 (10^1)*2 &#43; (10^0)*5 Octal (Base 8) Contains numbers 0-7, each digit representing 3 bits. If you&rsquo;re familiar with Linux file permissions you already know Octal.
+" />
+<meta property="og:url" content="https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/" />
 <meta property="og:site_name" content="quixel200" />
 
   <meta property="og:image" content="https://quixel200.github.io/og-image.png">
@@ -88,12 +96,10 @@
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2025-10-24 11:26:30 &#43;0530 IST" />
+  <meta property="article:published_time" content="2025-10-28 08:22:25 &#43;0530 IST" />
 
 
 
-
-  <link href="/notes/reverse_engineering/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
 
 
 
@@ -181,73 +187,61 @@
 
   <div class="content">
     
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/">Number Systems</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-10-28</time></div>
+
   
-    <div class="index-content">
-      <h1 id="work-in-progress-sorry">work in progress&hellip; sorry</h1>
-<h1 id="dig-deeper">Dig deeper.</h1>
-<h1 id="assemblyx86">Assembly(x86)</h1>
-<ul>
-<li><a href="/notes/reverse_engineering/assembly/number_system/">Number systems</a></li>
-<li><a href="/notes/reverse_engineering/registers">Registers</a></li>
-<li><a href="notes/reverse_engineering/stack_and_heap">The stack and the heap</a></li>
-<li><a href="notes/reverse_engineering/writing_assembly">Writing assembly</a></li>
-<li><a href="notes/reverse_engineering/correlating_c">Correlating C and assembly</a></li>
-<li><a href="notes/reverse_engineering/disassemblers_and_decompilers">disassemblers and decompilers</a></li>
-<li><a href="/writeups/picoctf/crackme_100">Classic Crackme 0x100(picoCTF)</a></li>
-</ul>
-
-    </div>
   
-  <div class="posts">
-    
-      <article class="post on-list">
-        <h2 class="post-title">
-          <a href="https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/">Number Systems</a>
-        </h2>
-        <div class="post-meta"><time class="post-date">2025-10-28</time></div>
-
-        
-
-        
 
 
-        <div class="post-content">
-          
-            <p>Each base follows a pattern and you can clearly see that from the examples.</p>
-<h1 id="hexadecimal-base-16">Hexadecimal (Base 16)</h1>
+  
+
+  <div class="post-content"><div>
+        <p>Each base follows a pattern and you can clearly see that from the examples.</p>
+<h1 id="hexadecimal-base-16">Hexadecimal (Base 16)<a href="#hexadecimal-base-16" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <p>Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).</p>
 <pre tabindex="0"><code>0x2f is 48 in decimal
 
     2                f
 (16^1)*2  + (16^0)*16(f = 16)
-</code></pre><h1 id="decimal-base-10">Decimal (Base 10)</h1>
+</code></pre><h1 id="decimal-base-10">Decimal (Base 10)<a href="#decimal-base-10" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <p>The one we&rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.</p>
 <pre tabindex="0"><code>25 
 
     2           5
 (10^1)*2  + (10^0)*5
-</code></pre><h1 id="octal-base-8">Octal (Base 8)</h1>
+</code></pre><h1 id="octal-base-8">Octal (Base 8)<a href="#octal-base-8" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <p>Contains numbers 0-7, each digit representing 3 bits. If you&rsquo;re familiar with Linux file permissions you already know Octal.</p>
-          
-        </div>
+<pre tabindex="0"><code>10 in decimal would be represented as 12 in octal 
 
-        
-           <div>
-            <a class="read-more button inline" href="/notes/reverse_engineering/assembly/number_system/">[Read more]</a>
-          </div>
-        
-      </article>
+  1           2
+(8^1)*1  + (8^0)*2
+</code></pre><h1 id="binary-base-2">Binary (Base 2)<a href="#binary-base-2" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>Contains just 0 and 1, really useful when working with circuits and can represent a on/off state.</p>
+<pre tabindex="0"><code>101 in binary is 5 in decimal
+
+   1         0        1
+(2^2)*1 + (2^1)*0 + (2^0)*1
+</code></pre><h2 id="why-so-many">Why so many?<a href="#why-so-many" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Binary is most useful when dealing with computers as circuits can only represent 2 states at a time, one being on and another being off.</p>
+<p>You might occasionally see Octal being used, the best example I can think of is file permissions in Linux.</p>
+<p>Hexadecimal is very extensively used to represent memory or values in a system as these values can get very huge.</p>
+<p>For example 64GB in bytes is 68,719,476,736.
+In hexadecmial? <code>0x1000000000</code>.
+As you can see it is much easier to read and represent hexadecimal numbers once you get used to them.</p>
+
+      </div></div>
+
+  
+
+  
     
 
-    <div class="pagination">
-  <div class="pagination__buttons">
-    
-    
-    
-  </div>
-</div>
-
-  </div>
+  
+</article>
 
   </div>
 

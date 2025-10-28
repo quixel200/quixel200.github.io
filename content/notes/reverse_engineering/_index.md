@@ -12,7 +12,7 @@ title = 'Reverse_engineering'
 
 # Assembly(x86)
 
-- [Number systems](/notes/reverse_engineering/assembly)
+- [Number systems](/notes/reverse_engineering/assembly/number_system)
 - [Registers](/notes/reverse_engineering/registers)
 - [The stack and the heap](notes/reverse_engineering/stack_and_heap)
 - [Writing assembly](notes/reverse_engineering/writing_assembly)

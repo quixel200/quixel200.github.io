@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Registers :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="When running a program the CPU needs fast access to memory to perform operations efficiently. The time it takes for the CPU to fetch instructions from RAM is a very costly operation which is why we have registers.
+The x86 64 bit architecture contains 16 registers each holding 64 bits of data, similarly the older x86 32 bit architecture had 9 registers each holding 32 bits data.
+The 32 bit general purpose registers are:
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://quixel200.github.io/notes/reverse_engineering/assembly/registers/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terminal.min.31f3bd93fad73432d7c5354e101fe6862964f38e4ae7382023b94be361c32c64.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://quixel200.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://quixel200.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Registers">
+<meta property="og:description" content="When running a program the CPU needs fast access to memory to perform operations efficiently. The time it takes for the CPU to fetch instructions from RAM is a very costly operation which is why we have registers.
+The x86 64 bit architecture contains 16 registers each holding 64 bits of data, similarly the older x86 32 bit architecture had 9 registers each holding 32 bits data.
+The 32 bit general purpose registers are:
+" />
+<meta property="og:url" content="https://quixel200.github.io/notes/reverse_engineering/assembly/registers/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="https://quixel200.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-10-28 08:57:16 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://quixel200.github.io/notes/reverse_engineering/assembly/registers/">Registers</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-10-28</time></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>When running a program the CPU needs fast access to memory to perform operations efficiently. The time it takes for the CPU to fetch instructions from RAM is a very costly operation which is why we have registers.</p>
+<p>The x86 64 bit architecture contains 16 registers each holding 64 bits of data, similarly the older x86 32 bit architecture had 9 registers each holding 32 bits data.</p>
+<p>The 32 bit general purpose registers are:</p>
+<pre tabindex="0"><code>eax   ebx   ecx   edx 
+</code></pre><p>In 64 bit:</p>
+<pre tabindex="0"><code>rax   rbx   rcx   rdx
+</code></pre><p>In addition to these, there are 8 new registers:</p>
+<pre tabindex="0"><code>r8  r9  r10  r11  ....  r15
+</code></pre><p>There are also 5 registers that have specific purposes and we&rsquo;ll discuss later. They are:</p>
+<pre tabindex="0"><code>esi edi ebp eip esp
+</code></pre><p>On 64 bit:</p>
+<pre tabindex="0"><code>rsi rdi rbp rip rsp
+</code></pre><p><strong>Some trivia:</strong> The first 8 bit processor released by Intel used registers <code>a</code>,<code>b</code>,<code>c</code>&hellip;, once 16 bit processor came along they were named <code>ax</code>,<code>bx</code> for <code>a extended</code>,<code>b extended</code> and so on. Very creative names,I know.</p>
+<p>On 32 bit, they were then named <code>eax</code> for&hellip; extended a extended&hellip;? I am as lost as you are. Don&rsquo;t even ask why 64 bit starts with a <code>r</code>.</p>
+<h1 id="the-special-registers">The special registers<a href="#the-special-registers" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<ul>
+<li><code>rip</code> - Your instruction pointer, points to the current instruction being executed in your program.</li>
+<li><code>rsi, rdi</code> - source index and destination index, mostly used for string operations.</li>
+<li><code>rbp, rsp</code> - base pointer and stack pointer to keep track of the stack.</li>
+</ul>
+<h1 id="partial-access">Partial Access<a href="#partial-access" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>You can access partial values of a register</p>
+<ul>
+<li><code>eax</code> - the lower 32 bits</li>
+<li><code>ax</code> - the higher 16 bits of eax</li>
+<li><code>al</code> - lower 8 bits</li>
+<li><code>ah</code> - higher 8 bits</li>
+</ul>
+<pre tabindex="0"><code>Bits:  63                                          32 31               16 15        8 7        0
+       ┌──────────────────────────────────────────────┬──────────────────┬──────────┬──────────┐
+       │                    RAX (64 bits)             │&lt;-   EAX (32) -&gt;  │&lt;- AX(16) │          │
+       │                                              │                  │          │          │
+       └──────────────────────────────────────────────┴──────────────────┴──────────┴──────────┘
+                                                                      ▲            ▲        ▲
+                                                                      │            │        │
+                                                                      │            │        └─ AL (8 bits)
+                                                                      │            └────────── AH (8 bits)
+                                                                      └─────────────────────── AX (16 bits)
+</code></pre><h1 id="calling-convention">Calling convention<a href="#calling-convention" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>When a function is called, its arguments are passed using registers, on x86 the order is:</p>
+<pre tabindex="0"><code>1st argument     RDI 
+2nd argument     RSI
+3rd argument     RDX
+4th argument     RCX
+5th argument     R8
+6th argument     R9
+</code></pre><p><strong>Note:</strong> The order differs slightly for direct system calls.</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

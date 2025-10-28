@@ -6,8 +6,15 @@
     <description>Recent content in Reverse_engineering on quixel200</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Oct 2025 08:22:25 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 28 Oct 2025 08:57:16 +0530</lastBuildDate>
     <atom:link href="https://quixel200.github.io/notes/reverse_engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Registers</title>
+      <link>https://quixel200.github.io/notes/reverse_engineering/assembly/registers/</link>
+      <pubDate>Tue, 28 Oct 2025 08:57:16 +0530</pubDate>
+      <guid>https://quixel200.github.io/notes/reverse_engineering/assembly/registers/</guid>
+      <description>&lt;p&gt;When running a program the CPU needs fast access to memory to perform operations efficiently. The time it takes for the CPU to fetch instructions from RAM is a very costly operation which is why we have registers.&lt;/p&gt;&#xA;&lt;p&gt;The x86 64 bit architecture contains 16 registers each holding 64 bits of data, similarly the older x86 32 bit architecture had 9 registers each holding 32 bits data.&lt;/p&gt;&#xA;&lt;p&gt;The 32 bit general purpose registers are:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Number Systems</title>
       <link>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</link>

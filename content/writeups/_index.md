@@ -8,6 +8,10 @@ title = 'Write-ups'
 
 The best CTF I've ever participated in, securing 28th place! It contains a lot of unique challenges that included blue teaming and SOC stuff instead of the typical red teaming. Learned quite a lot and I wish there were more CTF's like this.
 
+## [L3m0nCTF](/writeups/l3m0nctf)
+
+A 24 hour offline CTF competition conducted by Amrita Vishwa Vidyapeetham, Coimbatore.
+
 ## [Simple CTF - TryHackMe](/writeups/simplectf)
 
 A simple beginner level CTF challenge on TryHackMe for anyone interested in getting into cybersecurity!

@@ -5,7 +5,7 @@
     <link>https://quixel200.github.io/notes/reverse_engineering/</link>
     <description>Recent content in Reverse_engineering on quixel200</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Tue, 28 Oct 2025 08:57:16 +0530</lastBuildDate>
     <atom:link href="https://quixel200.github.io/notes/reverse_engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -20,7 +20,7 @@
       <link>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</link>
       <pubDate>Tue, 28 Oct 2025 08:22:25 +0530</pubDate>
       <guid>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</guid>
-      <description>&lt;p&gt;Each base follows a pattern and you can clearly see that from the examples.&lt;/p&gt;&#xA;&lt;h1 id=&#34;hexadecimal-base-16&#34;&gt;Hexadecimal (Base 16)&lt;/h1&gt;&#xA;&lt;p&gt;Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0x2f is 48 in decimal&#xA;&#xA;    2                f&#xA;(16^1)*2  + (16^0)*16(f = 16)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;decimal-base-10&#34;&gt;Decimal (Base 10)&lt;/h1&gt;&#xA;&lt;p&gt;The one we&amp;rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;25 &#xA;&#xA;    2           5&#xA;(10^1)*2  + (10^0)*5&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;octal-base-8&#34;&gt;Octal (Base 8)&lt;/h1&gt;&#xA;&lt;p&gt;Contains numbers 0-7, each digit representing 3 bits. If you&amp;rsquo;re familiar with Linux file permissions you already know Octal.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Each base follows a pattern and you can clearly see that from the examples.&lt;/p&gt;&#xA;&lt;h1 id=&#34;hexadecimal-base-16&#34;&gt;Hexadecimal (Base 16)&lt;/h1&gt;&#xA;&lt;p&gt;Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0x2f is 48 in decimal&#xD;&#xA;&#xD;&#xA;    2                f&#xD;&#xA;(16^1)*2  + (16^0)*16(f = 16)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;decimal-base-10&#34;&gt;Decimal (Base 10)&lt;/h1&gt;&#xA;&lt;p&gt;The one we&amp;rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;25 &#xD;&#xA;&#xD;&#xA;    2           5&#xD;&#xA;(10^1)*2  + (10^0)*5&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;octal-base-8&#34;&gt;Octal (Base 8)&lt;/h1&gt;&#xA;&lt;p&gt;Contains numbers 0-7, each digit representing 3 bits. If you&amp;rsquo;re familiar with Linux file permissions you already know Octal.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

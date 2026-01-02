@@ -5,7 +5,7 @@
     <link>https://quixel200.github.io/notes/intro_to_cybersecurity/</link>
     <description>Recent content in Intro to Cybersecurity on quixel200</description>
     <generator>Hugo</generator>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>Tue, 19 Aug 2025 08:51:29 +0530</lastBuildDate>
     <atom:link href="https://quixel200.github.io/notes/intro_to_cybersecurity/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -20,7 +20,7 @@
       <link>https://quixel200.github.io/notes/intro_to_cybersecurity/binary_exploitation/</link>
       <pubDate>Tue, 19 Aug 2025 08:39:39 +0530</pubDate>
       <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/binary_exploitation/</guid>
-      <description>&lt;p&gt;When exploiting these challenges, I highly recommend using &lt;code&gt;gdb&lt;/code&gt; to save you some time.&lt;/p&gt;&#xA;&lt;h2 id=&#34;in-pwntools&#34;&gt;in pwntools&lt;/h2&gt;&#xA;&lt;p&gt;debugging will only work with with a multiplexer like &lt;code&gt;tmux&lt;/code&gt;(covered in the linux module)&lt;/p&gt;&#xA;&lt;p&gt;The difference between these is important&lt;/p&gt;&#xA;&lt;p&gt;Start a process with the debugger(&lt;strong&gt;This will drop privileges&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = gdb.debug(&amp;#34;process&amp;#34;)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Start the process and then attach a debugger(&lt;strong&gt;this will not work if its a setuid binary&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = process(&amp;#34;process&amp;#34;)&#xA;gdb.attach(p)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;debugging-shellcode&#34;&gt;Debugging shellcode&lt;/h2&gt;&#xA;&lt;p&gt;If your shellcode doesn&amp;rsquo;t work for some reason, add an int3 instruction to the beginning of your shellcode (&lt;code&gt;\xcc&lt;/code&gt;). When run with a debugger it will automatically break at that point.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When exploiting these challenges, I highly recommend using &lt;code&gt;gdb&lt;/code&gt; to save you some time.&lt;/p&gt;&#xA;&lt;h2 id=&#34;in-pwntools&#34;&gt;in pwntools&lt;/h2&gt;&#xA;&lt;p&gt;debugging will only work with with a multiplexer like &lt;code&gt;tmux&lt;/code&gt;(covered in the linux module)&lt;/p&gt;&#xA;&lt;p&gt;The difference between these is important&lt;/p&gt;&#xA;&lt;p&gt;Start a process with the debugger(&lt;strong&gt;This will drop privileges&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = gdb.debug(&amp;#34;process&amp;#34;)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Start the process and then attach a debugger(&lt;strong&gt;this will not work if its a setuid binary&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = process(&amp;#34;process&amp;#34;)&#xD;&#xA;gdb.attach(p)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;debugging-shellcode&#34;&gt;Debugging shellcode&lt;/h2&gt;&#xA;&lt;p&gt;If your shellcode doesn&amp;rsquo;t work for some reason, add an int3 instruction to the beginning of your shellcode (&lt;code&gt;\xcc&lt;/code&gt;). When run with a debugger it will automatically break at that point.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Reverse Engineering</title>

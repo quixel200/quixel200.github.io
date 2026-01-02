@@ -254,23 +254,23 @@ quixel@pop-os:~/Desktop/sniphers$ checksec --file chall2 [*] &#39;/home/quixel/D
 <p><img src="/writeups/sniphers/images/love.png" alt="Love Challenge"></p>
 <p>We are given an APK file. Generally APK files are mostly compiled in Java which makes them easy to reverse, I&rsquo;ll be using the <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF">MobSF framework</a> to analyze the APK. We can run it in a Docker container. I&rsquo;ll also be using Genymotion to run an Android emulator.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo docker run -it --rm -p 8000:8000 -p 1337:1337  <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>-e <span class="nv">MOBSF_ANALYZER_IDENTIFIER</span><span class="o">=</span>127.0.0.1:6555 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>opensecurity/mobile-security-framework-mobsf:latest
+</span></span></span><span class="line"><span class="cl">-e <span class="nv">MOBSF_ANALYZER_IDENTIFIER</span><span class="o">=</span>127.0.0.1:6555 <span class="se">\
+</span></span></span><span class="line"><span class="cl">opensecurity/mobile-security-framework-mobsf:latest
 </span></span></code></pre></div><p>The <code>-e</code> sets the environment so that MobSF can connect to our Android device for dynamic analysis.</p>
 <p>To load the APK in our emulator we can use adb:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">quixel@pop-os:~$ adb install ~/Downloads/love.apk
 </span></span></code></pre></div><p>Here&rsquo;s the main file we are interested in:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.tamilctf.love</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.util.Log</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.view.View</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.Button</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.EditText</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.TextView</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// ... (imports omitted for brevity)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.os.Bundle</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.util.Log</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.view.View</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.Button</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.EditText</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">android.widget.TextView</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ... (imports omitted for brevity)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainActivity</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainActivity</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Button</span><span class="w"> </span><span class="n">magic</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">EditText</span><span class="w"> </span><span class="n">partnerName</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">TextView</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w">
@@ -309,7 +309,7 @@ quixel@pop-os:~/Desktop/sniphers$ checksec --file chall2 [*] &#39;/home/quixel/D
 </span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; and &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; are SISTERS/BROTHERS &#34;</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><p>Here&rsquo;s the interesting part I noticed:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">case</span><span class="w"> </span><span class="n">109</span><span class="p">:</span><span class="w"> </span><span class="c1">// &#39;m&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&#34;Flag :&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">FlagfromJNI</span><span class="p">());</span><span class="w">
@@ -441,7 +441,7 @@ But what if words could do more than just appear on the screen?
   <div class="footer__inner">
     
       <div class="copyright">
-        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
     
       <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
       </div>

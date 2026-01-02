@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Phantom Resolver :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The challenge provides us with 2 binary files:
+server_daemon libmonitor.so Looking at the server daemon decompilation:
+int __fastcall main(int argc, const char **argv, const char **envp){const char **v3; // rbxprint_banner(argc, argv, envp);printf(&#34;\n[*] Starting daemon in &#34;);if ( argc &lt;= 1 ){LABEL_7:puts(&#34;INTERACTIVE mode&#34;);puts(&#34;[!] Warning: daemon mode not enabled&#34;);puts(&#34;[!] Use --daemon flag for production deployment&#34;);}else{v3 = argv &#43; 1;while ( strcmp(*v3, &#34;--daemon&#34;) ){if ( &#43;&#43;v3 == &amp;argv[(unsigned int)(argc - 2) &#43; 2] )goto LABEL_7;}puts(&#34;DAEMON mode&#34;);}putchar(10);initialize_subsystems();puts(&#34;\n[*] Running system integrity check...&#34;);system_check();puts(&#34;\n[*] Daemon initialization complete&#34;);return 0;} We can see that it prints some lines and then calls system_check(), looking at system check:
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terminal.min.31f3bd93fad73432d7c5354e101fe6862964f38e4ae7382023b94be361c32c64.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://quixel200.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://quixel200.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Phantom Resolver">
+<meta property="og:description" content="The challenge provides us with 2 binary files:
+server_daemon libmonitor.so Looking at the server daemon decompilation:
+int __fastcall main(int argc, const char **argv, const char **envp){const char **v3; // rbxprint_banner(argc, argv, envp);printf(&#34;\n[*] Starting daemon in &#34;);if ( argc &lt;= 1 ){LABEL_7:puts(&#34;INTERACTIVE mode&#34;);puts(&#34;[!] Warning: daemon mode not enabled&#34;);puts(&#34;[!] Use --daemon flag for production deployment&#34;);}else{v3 = argv &#43; 1;while ( strcmp(*v3, &#34;--daemon&#34;) ){if ( &#43;&#43;v3 == &amp;argv[(unsigned int)(argc - 2) &#43; 2] )goto LABEL_7;}puts(&#34;DAEMON mode&#34;);}putchar(10);initialize_subsystems();puts(&#34;\n[*] Running system integrity check...&#34;);system_check();puts(&#34;\n[*] Daemon initialization complete&#34;);return 0;} We can see that it prints some lines and then calls system_check(), looking at system check:
+" />
+<meta property="og:url" content="https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="https://quixel200.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-01-02 09:20:02 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/">Phantom Resolver</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-01-02</time></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>The challenge provides us with 2 binary files:</p>
+<ul>
+<li>server_daemon</li>
+<li>libmonitor.so</li>
+</ul>
+<p>Looking at the server daemon decompilation:</p>
+<pre tabindex="0"><code>int __fastcall main(int argc, const char **argv, const char **envp)
+{
+  const char **v3; // rbx
+
+  print_banner(argc, argv, envp);
+  printf(&#34;\n[*] Starting daemon in &#34;);
+  if ( argc &lt;= 1 )
+  {
+LABEL_7:
+    puts(&#34;INTERACTIVE mode&#34;);
+    puts(&#34;[!] Warning: daemon mode not enabled&#34;);
+    puts(&#34;[!] Use --daemon flag for production deployment&#34;);
+  }
+  else
+  {
+    v3 = argv + 1;
+    while ( strcmp(*v3, &#34;--daemon&#34;) )
+    {
+      if ( ++v3 == &amp;argv[(unsigned int)(argc - 2) + 2] )
+        goto LABEL_7;
+    }
+    puts(&#34;DAEMON mode&#34;);
+  }
+  putchar(10);
+  initialize_subsystems();
+  puts(&#34;\n[*] Running system integrity check...&#34;);
+  system_check();
+  puts(&#34;\n[*] Daemon initialization complete&#34;);
+  return 0;
+}
+</code></pre><p>We can see that it prints some lines and then calls <code>system_check()</code>, looking at system check:</p>
+<pre tabindex="0"><code>// attributes: thunk
+__int64 system_check(void)
+{
+  return system_check();
+}
+</code></pre><p>the disassembly says:</p>
+<pre tabindex="0"><code>jmp     cs:off_5018
+</code></pre><p>So it jumps to some offset thats not part of this binary, this is where the <code>libmonitor.so</code> comes into play. Let&rsquo;s decompile the so file.</p>
+<p>Looking at the functions, we see a <code>system_check</code> function, We don&rsquo;t need to understand the entire function, but here&rsquo;s the important parts</p>
+<pre tabindex="0"><code>if ( v2 &gt;= 0
+    &amp;&amp; (close(v2), v3 = open(&#34;/proc/self/exe&#34;, 0), v4 = v3, v3 &gt;= 0)
+    &amp;&amp; (lseek(v3, 12288, 0), v5 = read(v4, &amp;buf, 6u), close(v4), v5 &gt; 5)
+    &amp;&amp; buf == 1330792515
+    &amp;&amp; v8 == 16717
+    &amp;&amp; (unsigned int)sub_1300(v4) )
+  {
+    return (int (*)())backdoor_function;
+  }
+  else
+  {
+    return normal_function;
+  }
+</code></pre><p>Some specific condition triggers the <code>backdoor_function</code>, otherwise it just runs the <code>normal_function</code>. Convering these integer values into ASCII:</p>
+<pre tabindex="0"><code>buf == 1330792515 -&gt; CHRO
+    &amp;&amp; v8 == 16717 -&gt; MA
+</code></pre><p>We get &ldquo;CHROMA&rdquo;, This will come in handy later.</p>
+<p>The <code>normal_function</code> doesn&rsquo;t really do much</p>
+<pre tabindex="0"><code>int normal_function()
+{
+  puts(&#34;[*] Monitoring system: nominal&#34;);
+  return puts(&#34;[*] All security checks passed&#34;);
+}
+</code></pre><p>Let&rsquo;s move on to the backdoor function. We can see it using our hardoded key</p>
+<ul>
+<li><code>v3 = _mm_cvtsi32_si128(buf);</code> -&gt; Just the integer buf_int</li>
+<li><code>v4 = _mm_xor_si128(_mm_srli_epi32(v3, 0x10u), v3);</code></li>
+<li><code>v5 = _mm_cvtsi128_si32(_mm_xor_si128(v4, _mm_srli_epi32(v4, 8u))) ^ v10 ^ v11;</code> -&gt; XOR the integer with itself right-shifted by 16 bits</li>
+</ul>
+<p>This seems to calculate the key from &ldquo;CHROMA&rdquo;.</p>
+<ul>
+<li>Take 0x4F524843 (&ldquo;CHRO&rdquo;) and XOR it with itself right-shifted by 16 bits → 0x4F520711</li>
+<li>Take that result and XOR it with itself right-shifted by 8 bits → 0x4F1D5516</li>
+<li>Take the lowest byte (0x16) and XOR it with &lsquo;M&rsquo; (0x4D) and &lsquo;A&rsquo; (0x41)</li>
+<li>0x16 ^ 0x4D ^ 0x41 = 0x1A (Decimal 26)</li>
+</ul>
+<p>So the calculated key is <code>0x1A</code></p>
+<p>Now we apply this key (0x1A) to the hex strings found in backdoor_function.</p>
+<pre tabindex="0"><code>  si128 = _mm_load_si128((const __m128i *)&amp;xmmword_2120);
+  v13[0] = _mm_load_si128((const __m128i *)&amp;xmmword_2130);
+  *(__m128i *)((char *)v13 + 9) = _mm_load_si128((const __m128i *)&amp;xmmword_2140);
+</code></pre><p>The logic is a &ldquo;rolling XOR&rdquo; where the key changes slightly using the previous byte</p>
+<pre tabindex="0"><code> v7 = 86;
+ do
+  {
+    p_si128 = (__m128i *)((char *)p_si128 + 1);
+    putchar((unsigned __int8)v5 ^ (unsigned __int8)v7);
+    v7 = p_si128-&gt;m128i_i8[0];
+  }
+  while ( p_si128-&gt;m128i_i8[0] );
+</code></pre><p>We can script the decryption logic in python, and retrieve the hardcoded bytes from the binary (xmmword_21&hellip;).</p>
+<pre tabindex="0"><code>import struct
+
+def solve():
+    print(&#34;[-] Configuring Master Key...&#34;)
+    # 1. The hardcoded key derived from &#34;CHROMA&#34;
+    key = 0x1A  # Calculated from step 1
+    
+    # 2. Reconstruct the encrypted buffer (Little Endian)
+    # xmmword_2120
+    chunk1 = bytes.fromhex(&#34;772A6E742E726A615C4E59742A772956&#34;)[::-1]
+    
+    # xmmword_2130 (We only need the first 9 bytes before the overwrite hits)
+    chunk2_full = bytes.fromhex(&#34;4579746F7C2B4568296C762A69296845&#34;)[::-1]
+    chunk2_part = chunk2_full[:9] 
+    
+    # xmmword_2140 (This overwrites the buffer starting at offset 25)
+    # Note: The snippet for 2140 was 30 chars long (15 bytes)
+    chunk3 = bytes.fromhex(&#34;676368296E692E774579746F7C2B45&#34;)[::-1]
+    
+    # Combine them: Chunk1 + Chunk2_Part + Chunk3
+    # (The overwrite logic in C effectively stitches these together)
+    ciphertext = chunk1 + chunk2_part + chunk3
+    
+    print(&#34;[-] Decrypting...&#34;)
+    
+    flag = &#34;&#34;
+    v7 = 86 # Initial seed (0x56)
+    
+    for byte in ciphertext:
+        # Decrypt char: Key ^ Previous_Byte
+        decrypted_char = key ^ v7
+        flag += chr(decrypted_char)
+        
+        # Update Previous_Byte to current ciphertext byte
+        v7 = byte
+        
+    print(f&#34;\n[+] FLAG FOUND: {flag}&#34;)
+
+if __name__ == &#34;__main__&#34;:
+    solve()
+</code></pre><p>Running this script gives us the flag:</p>
+<pre tabindex="0"><code>L3m0nCTF{ph4nt0m_r3s0lv3r_1func_m4st3ry}
+</code></pre>
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>L3m0nCTF Writeups on quixel200</title>
+    <link>https://quixel200.github.io/writeups/l3m0nctf/</link>
+    <description>Recent content in L3m0nCTF Writeups on quixel200</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2026 10:39:59 +0530</lastBuildDate>
+    <atom:link href="https://quixel200.github.io/writeups/l3m0nctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Slice Of Lemon Pie</title>
+      <link>https://quixel200.github.io/writeups/l3m0nctf/a_slice_of_lemon_pie/</link>
+      <pubDate>Fri, 02 Jan 2026 10:39:59 +0530</pubDate>
+      <guid>https://quixel200.github.io/writeups/l3m0nctf/a_slice_of_lemon_pie/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s run &lt;code&gt;checksec&lt;/code&gt; on the binary and see what protections it has.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;quix@quixel:~$ checksec --file=format_pie&#xD;&#xA;RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY Fortified       Fortifiable     FILE&#xD;&#xA;Partial RELRO   Canary found      NX enabled    PIE enabled     No RPATH   No RUNPATH   48 Symbols        No    0               2               format_pie&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;PIE,NX and canary are all enabled.&lt;/li&gt;&#xA;&lt;li&gt;Partial RELRO means that we can overwrite a GOT entry.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We can also see that the binary contains a win function that spawns a shell for us:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Jailer</title>
+      <link>https://quixel200.github.io/writeups/l3m0nctf/jailer/</link>
+      <pubDate>Fri, 02 Jan 2026 10:25:08 +0530</pubDate>
+      <guid>https://quixel200.github.io/writeups/l3m0nctf/jailer/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s decompile the binary and see what it does&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   sub_1280(a1, a2, a3);&#xD;&#xA;    if ( !(unsigned int)sub_13A0() )&#xD;&#xA;      return system(a2[1]);&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It seems to expect a command line argument, if provided it calls &lt;code&gt;sub_13A0()&lt;/code&gt; to &amp;lsquo;check&amp;rsquo; the input and calls &lt;code&gt;system&lt;/code&gt; on our input.&lt;/p&gt;&#xA;&lt;p&gt;Now you can just run &lt;code&gt;cat flag.txt&lt;/code&gt; and it will print the flag locally. But let&amp;rsquo;s dig a bit deeper.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;__int64 sub_13A0()&#xD;&#xA;{&#xD;&#xA;  int v0; // ebp&#xD;&#xA;  int v1; // ebx&#xD;&#xA;  v0 = sub_12E0();&#xD;&#xA;  v1 = open(&amp;#34;flag.txt&amp;#34;, 0);&#xD;&#xA;  if ( v1 &amp;lt; 0 )&#xD;&#xA;  {&#xD;&#xA;    v1 = open(&amp;#34;/flag.txt&amp;#34;, 0);&#xD;&#xA;    if ( v1 &amp;lt; 0 )&#xD;&#xA;      return 0xFFFFFFFFLL;&#xD;&#xA;  }&#xD;&#xA;  dup2(v1, v0);&#xD;&#xA;  close(v1);&#xD;&#xA;  return 0;&#xD;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This seems to open the flag, &lt;code&gt;v0&lt;/code&gt; is calculated in &lt;code&gt;sub_12E0&lt;/code&gt;. The file descriptor for the flag is in &lt;code&gt;v1&lt;/code&gt; which then gets closed after a &lt;code&gt;dup2&lt;/code&gt; call. dup2 is used to duplicate the file descriptor.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Virtual girlfriend</title>
+      <link>https://quixel200.github.io/writeups/l3m0nctf/virtual_girlfriend/</link>
+      <pubDate>Fri, 02 Jan 2026 10:09:21 +0530</pubDate>
+      <guid>https://quixel200.github.io/writeups/l3m0nctf/virtual_girlfriend/</guid>
+      <description>&lt;p&gt;We have been given a &lt;code&gt;main.s&lt;/code&gt; file, written in AT&amp;amp;T syntax&amp;hellip; (or as I like to call it, the wrong syntax). Our goal is to find out the return value of the program.&lt;/p&gt;&#xA;&lt;p&gt;The main concept of this challenge is that it has some infinite loops and dead code that prevents you from executing it normally.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; label1:&#xD;&#xA;    push rbp&#xD;&#xA;    mov rbp, rsp&#xD;&#xA;    call label2&#xD;&#xA;    call label3&#xD;&#xA;    jmp label4&#xD;&#xA;    pop rbp&#xD;&#xA;    ret&#xD;&#xA;...&#xD;&#xA; label4:&#xD;&#xA;    jmp label4 &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;After calling label2 and label3, there is a jmp label4&lt;/li&gt;&#xA;&lt;li&gt;label4 calls &lt;code&gt;jmp label4&lt;/code&gt;, creating an infinite loop.&lt;/li&gt;&#xA;&lt;li&gt;The solution is to remove lavel4 completely.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Inside label3,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Phantom Resolver</title>
+      <link>https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/</link>
+      <pubDate>Fri, 02 Jan 2026 09:20:02 +0530</pubDate>
+      <guid>https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/</guid>
+      <description>&lt;p&gt;The challenge provides us with 2 binary files:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;server_daemon&lt;/li&gt;&#xA;&lt;li&gt;libmonitor.so&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Looking at the server daemon decompilation:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int __fastcall main(int argc, const char **argv, const char **envp)&#xD;&#xA;{&#xD;&#xA;  const char **v3; // rbx&#xD;&#xA;&#xD;&#xA;  print_banner(argc, argv, envp);&#xD;&#xA;  printf(&amp;#34;\n[*] Starting daemon in &amp;#34;);&#xD;&#xA;  if ( argc &amp;lt;= 1 )&#xD;&#xA;  {&#xD;&#xA;LABEL_7:&#xD;&#xA;    puts(&amp;#34;INTERACTIVE mode&amp;#34;);&#xD;&#xA;    puts(&amp;#34;[!] Warning: daemon mode not enabled&amp;#34;);&#xD;&#xA;    puts(&amp;#34;[!] Use --daemon flag for production deployment&amp;#34;);&#xD;&#xA;  }&#xD;&#xA;  else&#xD;&#xA;  {&#xD;&#xA;    v3 = argv + 1;&#xD;&#xA;    while ( strcmp(*v3, &amp;#34;--daemon&amp;#34;) )&#xD;&#xA;    {&#xD;&#xA;      if ( ++v3 == &amp;amp;argv[(unsigned int)(argc - 2) + 2] )&#xD;&#xA;        goto LABEL_7;&#xD;&#xA;    }&#xD;&#xA;    puts(&amp;#34;DAEMON mode&amp;#34;);&#xD;&#xA;  }&#xD;&#xA;  putchar(10);&#xD;&#xA;  initialize_subsystems();&#xD;&#xA;  puts(&amp;#34;\n[*] Running system integrity check...&amp;#34;);&#xD;&#xA;  system_check();&#xD;&#xA;  puts(&amp;#34;\n[*] Daemon initialization complete&amp;#34;);&#xD;&#xA;  return 0;&#xD;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can see that it prints some lines and then calls &lt;code&gt;system_check()&lt;/code&gt;, looking at system check:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

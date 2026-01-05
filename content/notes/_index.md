@@ -4,7 +4,7 @@ draft = false
 title = 'Notes'
 +++
 
-### Would you like to delve into the arcane world of cybersecurity? You will need patience and persistence... A lot of it.
+### Would you like to delve into the arcane world of binary exploitation? You will need patience and persistence... A lot of it.
 
 # [Binary Exploitation](/notes/binary_exploitation)
 

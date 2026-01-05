@@ -1,17 +1,19 @@
-# About Me
+# whoami
 
-I am a passionate and detail-oriented cybersecurity enthusiast currently pursuing Computer Science and Engineering with a specialization in Cyber Security actively participating in various cybersecurity competitions.
+- Rev/Pwn CTF player
+- I play video games, a lot. (on a quest to 100% silksong)
+- Member of [CTF Academy](https://ctf.asu.edu/education/ace-ctf-academy/) at Arizona State University.
+- Member of TamilCTF
+- Member of MeowSec (my University CTF team)
 
-I have strong experience in Capture The Flag (CTF) challenges, reverse engineering, and binary exploitation. My technical skills span across malware analysis, web exploitation, red teaming, and scripting with Python. I'm proficient in low-level programming languages like C and Assembly, and have a deep understanding of system internals.
+# Contact me 
 
-I enjoy coding and working on various [projects](/projects) in my spare time. I also write [articles](/articles) and CTF writeups to share my knowledge with the cybersecurity community.
-
-I am a member of the [CTF Academy](https://ctf.asu.edu/education/ace-ctf-academy/) at Arizona State University, I am also a member of TamilCTF
-As a co-founder of MeowSec CTF team, I actively maintain and participate in CTF competitions with a team of 7-8 players. I'm also a member of TamilCTF, focusing on binary exploitation and reverse engineering challenges.
+- Email: blazegaming20057@gmail.com (blame the 12 year old me who came up with the name)
+- Discord: @quixel.ca
 
 # Achievements
 
-- **Yellow Belt** at [pwn.college](https://pwn.college/hacker/52735) - An educational platform maintained by Arizona State University
+- **Green Belt** at [pwn.college](https://pwn.college/hacker/52735) - An educational platform maintained by Arizona State University
 - **3rd Place** in [$N1PH€RS 2.0 CTF](https://quixel200.github.io/writeups/sniphers_2.html) conducted by Tamil CTF
 - **2nd Place** in ACNCTF conducted by Amrita University, Chennai
 - **1st place** in L3m0nCTF conducted by Amrita University, Coimbatore

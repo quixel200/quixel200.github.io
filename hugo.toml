@@ -1,4 +1,4 @@
-baseurl = "https://quixel200.github.io/"
+baseurl = "http://mycatpets.me/"
 languageCode = "en-us"
 title = "quixel200"
 
@@ -11,17 +11,21 @@ pagination.pagerSize = 5
 [markup.highlight]
   noClasses = false
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
 
 [params]
+  customCSS = ["/css/theme.css"]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
   contentTypeName = "posts"
 
   # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 4
+  showMenuItems = 5
 
   # show selector to switch language
   showLanguageSelector = false
@@ -98,10 +102,14 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "Terminal"
+        logoText = "Nyan~"
         logoHomeLink = "/"
 
       [languages.en.menu]
+        [[languages.en.menu.main]]
+          identifier = "Now"
+          name = "Now"
+          url = "/now"
         [[languages.en.menu.main]]
           identifier = "Writeups"
           name = "Writeups"

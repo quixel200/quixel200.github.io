@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cloudsek CTF on quixel200</title>
-    <link>https://quixel200.github.io/writeups/cloudsek/</link>
+    <link>http://mycatpets.me/writeups/cloudsek/</link>
     <description>Recent content in Cloudsek CTF on quixel200</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://quixel200.github.io/writeups/cloudsek/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://mycatpets.me/writeups/cloudsek/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

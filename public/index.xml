@@ -2,122 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>quixel200</title>
-    <link>https://quixel200.github.io/</link>
+    <link>http://mycatpets.me/</link>
     <description>Recent content on quixel200</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Jan 2026 10:39:59 +0530</lastBuildDate>
-    <atom:link href="https://quixel200.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Apr 2026 17:58:42 +0530</lastBuildDate>
+    <atom:link href="http://mycatpets.me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Now</title>
+      <link>http://mycatpets.me/now/</link>
+      <pubDate>Fri, 24 Apr 2026 17:58:42 +0530</pubDate>
+      <guid>http://mycatpets.me/now/</guid>
+      <description>&lt;h1 id=&#34;whats-this&#34;&gt;Whats this?&lt;/h1&gt;&#xA;&lt;p&gt;For anyone wondering what this page is &lt;a href=&#34;https://nownownow.com/about&#34;&gt;check this out&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;learning&#34;&gt;Learning!&lt;/h1&gt;&#xA;&lt;p&gt;Now that I think about it that one word summarizes my entire existence&amp;hellip;&lt;/p&gt;&#xA;&lt;h1 id=&#34;ctfs&#34;&gt;CTFs&lt;/h1&gt;&#xA;&lt;p&gt;I absolutely love &lt;a href=&#34;https://en.wikipedia.org/wiki/Capture_the_flag_%28cybersecurity%29&#34;&gt;CTF&amp;rsquo;s&lt;/a&gt;. Me and my team have won a lot of CTFs&amp;hellip; but more than that almost every CTF I have participated in has taught me something new, stuff that I never knew even existed. I truly believe that these challenge authors live in a different plane of existencee. You can probably guess how excited I was when I had the oppurtunity to be one as well.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>A Slice Of Lemon Pie</title>
-      <link>https://quixel200.github.io/writeups/l3m0nctf/a_slice_of_lemon_pie/</link>
+      <link>http://mycatpets.me/writeups/l3m0nctf/a_slice_of_lemon_pie/</link>
       <pubDate>Fri, 02 Jan 2026 10:39:59 +0530</pubDate>
-      <guid>https://quixel200.github.io/writeups/l3m0nctf/a_slice_of_lemon_pie/</guid>
+      <guid>http://mycatpets.me/writeups/l3m0nctf/a_slice_of_lemon_pie/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s run &lt;code&gt;checksec&lt;/code&gt; on the binary and see what protections it has.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;quix@quixel:~$ checksec --file=format_pie&#xD;&#xA;RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY Fortified       Fortifiable     FILE&#xD;&#xA;Partial RELRO   Canary found      NX enabled    PIE enabled     No RPATH   No RUNPATH   48 Symbols        No    0               2               format_pie&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;PIE,NX and canary are all enabled.&lt;/li&gt;&#xA;&lt;li&gt;Partial RELRO means that we can overwrite a GOT entry.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We can also see that the binary contains a win function that spawns a shell for us:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Jailer</title>
-      <link>https://quixel200.github.io/writeups/l3m0nctf/jailer/</link>
+      <link>http://mycatpets.me/writeups/l3m0nctf/jailer/</link>
       <pubDate>Fri, 02 Jan 2026 10:25:08 +0530</pubDate>
-      <guid>https://quixel200.github.io/writeups/l3m0nctf/jailer/</guid>
+      <guid>http://mycatpets.me/writeups/l3m0nctf/jailer/</guid>
       <description>&lt;p&gt;Let&amp;rsquo;s decompile the binary and see what it does&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;   sub_1280(a1, a2, a3);&#xD;&#xA;    if ( !(unsigned int)sub_13A0() )&#xD;&#xA;      return system(a2[1]);&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It seems to expect a command line argument, if provided it calls &lt;code&gt;sub_13A0()&lt;/code&gt; to &amp;lsquo;check&amp;rsquo; the input and calls &lt;code&gt;system&lt;/code&gt; on our input.&lt;/p&gt;&#xA;&lt;p&gt;Now you can just run &lt;code&gt;cat flag.txt&lt;/code&gt; and it will print the flag locally. But let&amp;rsquo;s dig a bit deeper.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;__int64 sub_13A0()&#xD;&#xA;{&#xD;&#xA;  int v0; // ebp&#xD;&#xA;  int v1; // ebx&#xD;&#xA;  v0 = sub_12E0();&#xD;&#xA;  v1 = open(&amp;#34;flag.txt&amp;#34;, 0);&#xD;&#xA;  if ( v1 &amp;lt; 0 )&#xD;&#xA;  {&#xD;&#xA;    v1 = open(&amp;#34;/flag.txt&amp;#34;, 0);&#xD;&#xA;    if ( v1 &amp;lt; 0 )&#xD;&#xA;      return 0xFFFFFFFFLL;&#xD;&#xA;  }&#xD;&#xA;  dup2(v1, v0);&#xD;&#xA;  close(v1);&#xD;&#xA;  return 0;&#xD;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This seems to open the flag, &lt;code&gt;v0&lt;/code&gt; is calculated in &lt;code&gt;sub_12E0&lt;/code&gt;. The file descriptor for the flag is in &lt;code&gt;v1&lt;/code&gt; which then gets closed after a &lt;code&gt;dup2&lt;/code&gt; call. dup2 is used to duplicate the file descriptor.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Virtual girlfriend</title>
-      <link>https://quixel200.github.io/writeups/l3m0nctf/virtual_girlfriend/</link>
+      <link>http://mycatpets.me/writeups/l3m0nctf/virtual_girlfriend/</link>
       <pubDate>Fri, 02 Jan 2026 10:09:21 +0530</pubDate>
-      <guid>https://quixel200.github.io/writeups/l3m0nctf/virtual_girlfriend/</guid>
+      <guid>http://mycatpets.me/writeups/l3m0nctf/virtual_girlfriend/</guid>
       <description>&lt;p&gt;We have been given a &lt;code&gt;main.s&lt;/code&gt; file, written in AT&amp;amp;T syntax&amp;hellip; (or as I like to call it, the wrong syntax). Our goal is to find out the return value of the program.&lt;/p&gt;&#xA;&lt;p&gt;The main concept of this challenge is that it has some infinite loops and dead code that prevents you from executing it normally.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; label1:&#xD;&#xA;    push rbp&#xD;&#xA;    mov rbp, rsp&#xD;&#xA;    call label2&#xD;&#xA;    call label3&#xD;&#xA;    jmp label4&#xD;&#xA;    pop rbp&#xD;&#xA;    ret&#xD;&#xA;...&#xD;&#xA; label4:&#xD;&#xA;    jmp label4 &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;After calling label2 and label3, there is a jmp label4&lt;/li&gt;&#xA;&lt;li&gt;label4 calls &lt;code&gt;jmp label4&lt;/code&gt;, creating an infinite loop.&lt;/li&gt;&#xA;&lt;li&gt;The solution is to remove lavel4 completely.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Inside label3,&lt;/p&gt;</description>
     </item>
     <item>
       <title>Phantom Resolver</title>
-      <link>https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/</link>
+      <link>http://mycatpets.me/writeups/l3m0nctf/phantom_resolver/</link>
       <pubDate>Fri, 02 Jan 2026 09:20:02 +0530</pubDate>
-      <guid>https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/</guid>
+      <guid>http://mycatpets.me/writeups/l3m0nctf/phantom_resolver/</guid>
       <description>&lt;p&gt;The challenge provides us with 2 binary files:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;server_daemon&lt;/li&gt;&#xA;&lt;li&gt;libmonitor.so&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Looking at the server daemon decompilation:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int __fastcall main(int argc, const char **argv, const char **envp)&#xD;&#xA;{&#xD;&#xA;  const char **v3; // rbx&#xD;&#xA;&#xD;&#xA;  print_banner(argc, argv, envp);&#xD;&#xA;  printf(&amp;#34;\n[*] Starting daemon in &amp;#34;);&#xD;&#xA;  if ( argc &amp;lt;= 1 )&#xD;&#xA;  {&#xD;&#xA;LABEL_7:&#xD;&#xA;    puts(&amp;#34;INTERACTIVE mode&amp;#34;);&#xD;&#xA;    puts(&amp;#34;[!] Warning: daemon mode not enabled&amp;#34;);&#xD;&#xA;    puts(&amp;#34;[!] Use --daemon flag for production deployment&amp;#34;);&#xD;&#xA;  }&#xD;&#xA;  else&#xD;&#xA;  {&#xD;&#xA;    v3 = argv + 1;&#xD;&#xA;    while ( strcmp(*v3, &amp;#34;--daemon&amp;#34;) )&#xD;&#xA;    {&#xD;&#xA;      if ( ++v3 == &amp;amp;argv[(unsigned int)(argc - 2) + 2] )&#xD;&#xA;        goto LABEL_7;&#xD;&#xA;    }&#xD;&#xA;    puts(&amp;#34;DAEMON mode&amp;#34;);&#xD;&#xA;  }&#xD;&#xA;  putchar(10);&#xD;&#xA;  initialize_subsystems();&#xD;&#xA;  puts(&amp;#34;\n[*] Running system integrity check...&amp;#34;);&#xD;&#xA;  system_check();&#xD;&#xA;  puts(&amp;#34;\n[*] Daemon initialization complete&amp;#34;);&#xD;&#xA;  return 0;&#xD;&#xA;}&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We can see that it prints some lines and then calls &lt;code&gt;system_check()&lt;/code&gt;, looking at system check:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Registers</title>
-      <link>https://quixel200.github.io/notes/reverse_engineering/assembly/registers/</link>
+      <link>http://mycatpets.me/notes/reverse_engineering/assembly/registers/</link>
       <pubDate>Tue, 28 Oct 2025 08:57:16 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/reverse_engineering/assembly/registers/</guid>
+      <guid>http://mycatpets.me/notes/reverse_engineering/assembly/registers/</guid>
       <description>&lt;p&gt;When running a program the CPU needs fast access to memory to perform operations efficiently. The time it takes for the CPU to fetch instructions from RAM is a very costly operation which is why we have registers.&lt;/p&gt;&#xA;&lt;p&gt;The x86 64 bit architecture contains 16 registers each holding 64 bits of data, similarly the older x86 32 bit architecture had 9 registers each holding 32 bits data.&lt;/p&gt;&#xA;&lt;p&gt;The 32 bit general purpose registers are:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Number Systems</title>
-      <link>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</link>
+      <link>http://mycatpets.me/notes/reverse_engineering/assembly/number_system/</link>
       <pubDate>Tue, 28 Oct 2025 08:22:25 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</guid>
+      <guid>http://mycatpets.me/notes/reverse_engineering/assembly/number_system/</guid>
       <description>&lt;p&gt;Each base follows a pattern and you can clearly see that from the examples.&lt;/p&gt;&#xA;&lt;h1 id=&#34;hexadecimal-base-16&#34;&gt;Hexadecimal (Base 16)&lt;/h1&gt;&#xA;&lt;p&gt;Each digit can represent upto 16, 0-9 and then A-F(for 10 to 16).&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0x2f is 48 in decimal&#xD;&#xA;&#xD;&#xA;    2                f&#xD;&#xA;(16^1)*2  + (16^0)*16(f = 16)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;decimal-base-10&#34;&gt;Decimal (Base 10)&lt;/h1&gt;&#xA;&lt;p&gt;The one we&amp;rsquo;re all familiar with, numbers 0-9. Pretty self explanatory.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;25 &#xD;&#xA;&#xD;&#xA;    2           5&#xD;&#xA;(10^1)*2  + (10^0)*5&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;octal-base-8&#34;&gt;Octal (Base 8)&lt;/h1&gt;&#xA;&lt;p&gt;Contains numbers 0-7, each digit representing 3 bits. If you&amp;rsquo;re familiar with Linux file permissions you already know Octal.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pwntools</title>
-      <link>https://quixel200.github.io/notes/binary_exploitation/pwntools/</link>
+      <link>http://mycatpets.me/notes/binary_exploitation/pwntools/</link>
       <pubDate>Sat, 25 Oct 2025 08:37:35 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/binary_exploitation/pwntools/</guid>
+      <guid>http://mycatpets.me/notes/binary_exploitation/pwntools/</guid>
       <description>&lt;h1 id=&#34;pwntools-cheatsheet&#34;&gt;pwntools cheatsheet&lt;/h1&gt;&#xA;&lt;h1 id=&#34;program-interaction&#34;&gt;Program Interaction&lt;/h1&gt;&#xA;&lt;p&gt;start a process&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = process(&amp;#34;binary&amp;#34;)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;to attach gdb (note: compatable terminal required, I prefer using tmux)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = gdb.debug(&amp;#34;binary&amp;#34;)&#xD;&#xA;p = gdb.debug(&amp;#34;binary&amp;#34;,alsr=False)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To interact with a remote process&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = remote(ip,port)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;writing-and-reading-data&#34;&gt;Writing and reading data&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p.send(b&amp;#34;hello&amp;#34;) -&amp;gt; sends &amp;#34;hello&amp;#34;&#xD;&#xA;p.sendline(b&amp;#34;hello&amp;#34;) -&amp;gt; sends &amp;#34;hello\n&amp;#34;&#xD;&#xA;&#xD;&#xA;p.recv(100) -&amp;gt; read upto 100 bytes&#xD;&#xA;p.recvline() -&amp;gt; read till a newline(\n) is encountered&#xD;&#xA;p.recvall() -&amp;gt; readall&#xD;&#xA;p.clean(1) -&amp;gt; readall with timeout&#xD;&#xA;&#xD;&#xA;p.sendafter(b&amp;#34;some string&amp;#34;,payload) -&amp;gt; sends payload after the string is encountered &#xD;&#xA;p.sendlineafter(b&amp;#34;some string&amp;#34;,payload) -&amp;gt; same as sendafter but with newline at end&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;p.interactive() -&amp;gt; interact manually&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;setting-context&#34;&gt;Setting context&lt;/h2&gt;&#xA;&lt;p&gt;important when writing assembly and doing ROP&lt;/p&gt;</description>
     </item>
     <item>
       <title>Integrated Security</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/integrated_security/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/integrated_security/</link>
       <pubDate>Tue, 19 Aug 2025 08:51:29 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/integrated_security/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/integrated_security/</guid>
       <description>&lt;p&gt;These challenges build upon everything you learned so far, you&amp;rsquo;re almost there!&lt;/p&gt;&#xA;&lt;p&gt;There will be very little or nothing new to learn here, you need to combine previously learned concepts.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Some of these challenges took me close to a week to complete, you will eventually get it!&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;some-tips-for-secure-chat&#34;&gt;Some tips for secure chat&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Read the server code, it doesn&amp;rsquo;t change much from 1-5 and it will help you a lot. (When I say read I mean understand each and every line)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Binary Exploitation</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/binary_exploitation/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/binary_exploitation/</link>
       <pubDate>Tue, 19 Aug 2025 08:39:39 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/binary_exploitation/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/binary_exploitation/</guid>
       <description>&lt;p&gt;When exploiting these challenges, I highly recommend using &lt;code&gt;gdb&lt;/code&gt; to save you some time.&lt;/p&gt;&#xA;&lt;h2 id=&#34;in-pwntools&#34;&gt;in pwntools&lt;/h2&gt;&#xA;&lt;p&gt;debugging will only work with with a multiplexer like &lt;code&gt;tmux&lt;/code&gt;(covered in the linux module)&lt;/p&gt;&#xA;&lt;p&gt;The difference between these is important&lt;/p&gt;&#xA;&lt;p&gt;Start a process with the debugger(&lt;strong&gt;This will drop privileges&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = gdb.debug(&amp;#34;process&amp;#34;)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Start the process and then attach a debugger(&lt;strong&gt;this will not work if its a setuid binary&lt;/strong&gt;)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = process(&amp;#34;process&amp;#34;)&#xD;&#xA;gdb.attach(p)&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;debugging-shellcode&#34;&gt;Debugging shellcode&lt;/h2&gt;&#xA;&lt;p&gt;If your shellcode doesn&amp;rsquo;t work for some reason, add an int3 instruction to the beginning of your shellcode (&lt;code&gt;\xcc&lt;/code&gt;). When run with a debugger it will automatically break at that point.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Reverse Engineering</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/reverse_engineering/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/reverse_engineering/</link>
       <pubDate>Tue, 19 Aug 2025 08:32:55 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/reverse_engineering/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/reverse_engineering/</guid>
       <description>&lt;p&gt;Now would be a great time to learn to use &lt;code&gt;ghidra&lt;/code&gt;,&lt;code&gt;ida&lt;/code&gt;,&lt;code&gt;radare2&lt;/code&gt; or &lt;code&gt;binary ninja&lt;/code&gt;. Also python scripting will come in real handy.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Do not waste your time trying to read the nested arrays or structs in the pseudo code section of ghidra(you&amp;rsquo;re welcome to try), it is much better to read the disassembly.&lt;/li&gt;&#xA;&lt;li&gt;some disassemblers might decompile things better than others, for example I have seen Ida automatically find main in stripped binaries unlike Ghidra.&lt;/li&gt;&#xA;&lt;li&gt;If static analysis gets too hard, just give the program input and see what goes wrong!, maybe even use something like gdb and set breakpoints.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;There will be some challenges with a &lt;strong&gt;massive spike in difficulty&lt;/strong&gt;, don&amp;rsquo;t give up you&amp;rsquo;ll eventually get it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Access Control</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/access_control/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/access_control/</link>
       <pubDate>Tue, 19 Aug 2025 08:30:43 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/access_control/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/access_control/</guid>
       <description>&lt;p&gt;Do you really want a guide for this? :(&lt;/p&gt;&#xA;&lt;p&gt;You might want to script the last 2 levels using &lt;code&gt;pwntools&lt;/code&gt; (there&amp;rsquo;s a community dojo for that)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cryptography</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/cryptography/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/cryptography/</link>
       <pubDate>Mon, 18 Aug 2025 16:27:37 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/cryptography/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/cryptography/</guid>
       <description>&lt;p&gt;After scouring through the internet for many hours, I have come to the conclusion that the material provided on the module is sufficient.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a video on how to approach the POA challenges that&amp;rsquo;s on the discord server:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://discord.com/channels/750635557666816031/968683579649437696/1400392548832514149&#34;&gt;here&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Intercepting_communication</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/intercepting_communication/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/intercepting_communication/</link>
       <pubDate>Mon, 18 Aug 2025 16:13:30 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/intercepting_communication/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/intercepting_communication/</guid>
       <description>&lt;h1 id=&#34;denial-of-service&#34;&gt;Denial of Service&lt;/h1&gt;&#xA;&lt;p&gt;Be patient&amp;hellip; you need to find the right balance where you overwhelm the server but not your machine.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Sometimes your flag might get lose in errors so either save the output to a log or grep it directly.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;the-rest-of-the-challenges&#34;&gt;The rest of the challenges&lt;/h1&gt;&#xA;&lt;p&gt;After these challenges, you need to craft raw packets using &lt;code&gt;scapy&lt;/code&gt;. The documentation is linked in the module.&#xA;&lt;a href=&#34;https://portswigger.net/web-security/file-path-traversal&#34;&gt;Check out portswigger&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Web Security</title>
-      <link>https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/</link>
+      <link>http://mycatpets.me/notes/intro_to_cybersecurity/web_security/</link>
       <pubDate>Mon, 18 Aug 2025 16:00:25 +0530</pubDate>
-      <guid>https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/</guid>
+      <guid>http://mycatpets.me/notes/intro_to_cybersecurity/web_security/</guid>
       <description>&lt;h1 id=&#34;path-traversal&#34;&gt;Path Traversal&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The description is more than enough to solve these. This might seem very simple but it &lt;a href=&#34;https://hackernoon.com/a-deep-dive-into-path-traversal-vulnerabilities&#34;&gt;happens more often than you think&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;curl hates relative paths&lt;/strong&gt;, it will resolve paths automatically, read the man pages to know more.I would recommend using python for testing.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;command-injection&#34;&gt;Command Injection&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The only hint for level 6:&#xA;Think of &lt;em&gt;every&lt;/em&gt; character you can use. Think about how you run multiple commands in your terminal or in a bash script&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;sql-injection&#34;&gt;SQL injection&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If you understand how SQL injection works, you&amp;rsquo;ll breeze through these, if not, watch the lecture video again&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;xss&#34;&gt;XSS&lt;/h1&gt;&#xA;&lt;p&gt;Before trying anything, cat the source code and understand what it&amp;rsquo;s doing.&lt;/p&gt;</description>
     </item>
     <item>
       <title>SMS</title>
-      <link>https://quixel200.github.io/projects/sms/</link>
+      <link>http://mycatpets.me/projects/sms/</link>
       <pubDate>Mon, 18 Aug 2025 15:11:33 +0530</pubDate>
-      <guid>https://quixel200.github.io/projects/sms/</guid>
+      <guid>http://mycatpets.me/projects/sms/</guid>
       <description>&lt;h1 id=&#34;student-management-system-sms&#34;&gt;Student Management System (SMS)&lt;/h1&gt;&#xA;&lt;p&gt;A full stack web app developed with HTML, Bootstrap, JavaScript, jQuery, PHP and MySQL designed to help faculty and students manage various academic and administrative activities.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Developed with the help of:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Karthiban R&lt;/strong&gt; (our mentor and team lead)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Kavinnandha&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Archana&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Keren&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Liyander Rishwanth&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Harish Kumar&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The application will be primarily used for automating log generation and the attendance of each class. It also has many features such as requesting and approving leaves, a front-end for database upload and editing, and dashboards for various roles.&lt;/p&gt;</description>
     </item>
     <item>
       <title>The OSI Model</title>
-      <link>https://quixel200.github.io/articles/osi-model/</link>
+      <link>http://mycatpets.me/articles/osi-model/</link>
       <pubDate>Mon, 18 Aug 2025 10:24:25 +0530</pubDate>
-      <guid>https://quixel200.github.io/articles/osi-model/</guid>
+      <guid>http://mycatpets.me/articles/osi-model/</guid>
       <description>&lt;h1 id=&#34;osi-model&#34;&gt;OSI Model&lt;/h1&gt;&#xA;&lt;p&gt;Note: You can view the packet capture in my github repository. This is meant to be supplementary material for my presentation, so don&amp;rsquo;t worry if it&amp;rsquo;s not clear. I will update it later with the full explanation.&lt;/p&gt;&#xA;&lt;p&gt;The Open Systems Interconnection (OSI) model is a &lt;strong&gt;reference model&lt;/strong&gt; developed by the International Organization for Standardization (ISO) that &amp;ldquo;provides a common basis for the coordination of standards development for the purpose of systems interconnection.&lt;/p&gt;</description>
     </item>
   </channel>

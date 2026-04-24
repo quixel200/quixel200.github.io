@@ -124,7 +124,7 @@ Run 4:
 
 ```
 
-We can clearly that it takes almost double the time to access memory that is not in the cache. 
+We can clearly see that it takes almost double the time to access memory that is not in the cache. 
 
 ## How do we actually use this information?
 
@@ -150,7 +150,7 @@ if (x < array1_size){
 ```
 
 - We will set the array1_size to 1 to simulate a out-of-bounds access.
-- to simply this attack, we shall consider array1 to be the secret we want to leak.
+- to simplify this attack, we shall consider array1 to be the secret we want to leak.
 - array2 is 1MB of mapped memory (256 pages of 4096 bytes each).
 
 Assume that x contains user-controlled data,To ensure that we access memory. 
@@ -169,7 +169,7 @@ We can essentially fool the branch predictor by giving it a valid index multiple
 ![branch predictor](images/branch_predictor.jpg)
 
 
-So esentially our exploit becomes
+so essentially our exploit becomes
 - train the branch predictor with a valid index. 
 - provide an invalid index, but it will still be speculatively executed.
 - measure the access time taken for each index in our mapped memory. 

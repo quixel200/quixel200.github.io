@@ -1,8 +1,17 @@
+<div class="blinkies">
+    <img src="cilingcat.gif"></img>
+    <img src="miku_approved.gif"></img>
+    <img src="mikuwink2.gif"></img>
+</div>
+
 # whoami
 
 - Rev/Pwn CTF player
 - I play video games, a lot. (on a quest to 100% silksong)
+- Guitarist
+- I love reading books, hit me up with some recommendations if you have any!
 - Member of [CTF Academy](https://ctf.asu.edu/education/ace-ctf-academy/) at Arizona State University.
+- Member of [DCG Coimbatore Chapter](https://dcg91422.org/)
 - Member of TamilCTF
 - Member of MeowSec (my University CTF team)
 

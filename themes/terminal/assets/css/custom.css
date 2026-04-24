@@ -1,0 +1,7 @@
+.blinkies img {
+    border-width: 5px;
+    image-rendering: pixelated; /* Keeps standard GIFs crisp */
+    image-rendering: -moz-crisp-edges; /* Firefox fallback */
+    margin: 2px; /* Gives them a tiny bit of breathing room */
+    display: inline-block;
+}

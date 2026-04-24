@@ -2,101 +2,104 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://quixel200.github.io/</loc>
+    <loc>http://mycatpets.me/</loc>
+    <lastmod>2026-04-24T17:58:42+05:30</lastmod>
+  </url><url>
+    <loc>http://mycatpets.me/now/</loc>
+    <lastmod>2026-04-24T17:58:42+05:30</lastmod>
+  </url><url>
+    <loc>http://mycatpets.me/writeups/l3m0nctf/a_slice_of_lemon_pie/</loc>
     <lastmod>2026-01-02T10:39:59+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/l3m0nctf/a_slice_of_lemon_pie/</loc>
-    <lastmod>2026-01-02T10:39:59+05:30</lastmod>
-  </url><url>
-    <loc>https://quixel200.github.io/writeups/l3m0nctf/jailer/</loc>
+    <loc>http://mycatpets.me/writeups/l3m0nctf/jailer/</loc>
     <lastmod>2026-01-02T10:25:08+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/l3m0nctf/virtual_girlfriend/</loc>
+    <loc>http://mycatpets.me/writeups/l3m0nctf/virtual_girlfriend/</loc>
     <lastmod>2026-01-02T10:09:21+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/l3m0nctf/phantom_resolver/</loc>
+    <loc>http://mycatpets.me/writeups/l3m0nctf/phantom_resolver/</loc>
     <lastmod>2026-01-02T09:20:02+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/l3m0nctf/</loc>
+    <loc>http://mycatpets.me/writeups/l3m0nctf/</loc>
     <lastmod>2026-01-02T08:45:19+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/cloudsek/</loc>
+    <loc>http://mycatpets.me/writeups/cloudsek/</loc>
     <lastmod>2025-12-08T11:27:45+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/reverse_engineering/assembly/registers/</loc>
+    <loc>http://mycatpets.me/notes/reverse_engineering/assembly/registers/</loc>
     <lastmod>2025-10-28T08:57:16+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/reverse_engineering/assembly/number_system/</loc>
+    <loc>http://mycatpets.me/notes/reverse_engineering/assembly/number_system/</loc>
     <lastmod>2025-10-28T08:22:25+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/binary_exploitation/pwntools/</loc>
+    <loc>http://mycatpets.me/notes/binary_exploitation/pwntools/</loc>
     <lastmod>2025-10-25T08:37:35+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/binary_exploitation/buffer_overflows/</loc>
+    <loc>http://mycatpets.me/notes/binary_exploitation/buffer_overflows/</loc>
     <lastmod>2025-10-24T14:11:56+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/reverse_engineering/</loc>
+    <loc>http://mycatpets.me/notes/reverse_engineering/</loc>
     <lastmod>2025-10-24T11:26:30+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/binary_exploitation/</loc>
+    <loc>http://mycatpets.me/notes/binary_exploitation/</loc>
     <lastmod>2025-10-24T11:17:11+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/whoami_command_detection/</loc>
+    <loc>http://mycatpets.me/writeups/whoami_command_detection/</loc>
     <lastmod>2025-08-23T08:28:22+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/integrated_security/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/integrated_security/</loc>
     <lastmod>2025-08-19T08:51:29+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/binary_exploitation/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/binary_exploitation/</loc>
     <lastmod>2025-08-19T08:39:39+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/reverse_engineering/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/reverse_engineering/</loc>
     <lastmod>2025-08-19T08:32:55+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/access_control/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/access_control/</loc>
     <lastmod>2025-08-19T08:30:43+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/cryptography/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/cryptography/</loc>
     <lastmod>2025-08-18T16:27:37+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/intercepting_communication/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/intercepting_communication/</loc>
     <lastmod>2025-08-18T16:13:30+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/web_security/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/web_security/</loc>
     <lastmod>2025-08-18T16:00:25+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/intro_to_cybersecurity/</loc>
+    <loc>http://mycatpets.me/notes/intro_to_cybersecurity/</loc>
     <lastmod>2025-08-18T15:36:07+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/simplectf/</loc>
+    <loc>http://mycatpets.me/writeups/simplectf/</loc>
     <lastmod>2025-08-18T15:26:12+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/sniphers/</loc>
+    <loc>http://mycatpets.me/writeups/sniphers/</loc>
     <lastmod>2025-08-18T15:18:59+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/projects/sms/</loc>
+    <loc>http://mycatpets.me/projects/sms/</loc>
     <lastmod>2025-08-18T15:11:33+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/articles/osi-model/</loc>
+    <loc>http://mycatpets.me/articles/osi-model/</loc>
     <lastmod>2025-08-18T10:24:25+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/articles/</loc>
+    <loc>http://mycatpets.me/articles/</loc>
     <lastmod>2025-08-18T10:24:19+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/articles/spectre_and_meltdown/</loc>
+    <loc>http://mycatpets.me/articles/spectre_and_meltdown/</loc>
     <lastmod>2025-08-18T10:24:19+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/notes/</loc>
+    <loc>http://mycatpets.me/notes/</loc>
     <lastmod>2025-08-18T10:17:46+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/projects/</loc>
+    <loc>http://mycatpets.me/projects/</loc>
     <lastmod>2025-08-18T10:16:27+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/writeups/</loc>
+    <loc>http://mycatpets.me/writeups/</loc>
     <lastmod>2025-08-18T10:13:54+05:30</lastmod>
   </url><url>
-    <loc>https://quixel200.github.io/categories/</loc>
+    <loc>http://mycatpets.me/categories/</loc>
   </url><url>
-    <loc>https://quixel200.github.io/tags/</loc>
+    <loc>http://mycatpets.me/tags/</loc>
   </url>
 </urlset>

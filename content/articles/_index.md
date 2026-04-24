@@ -11,3 +11,8 @@ A detailed explanation of the Spectre and Meltdown vulnerabilities along with an
 ## [The OSI model](osi-model)
 
 An in-depth practical explanation of the OSI model.
+
+
+## [SROP](/articles/srop)
+
+Explaining Sigreturn-Oriented Programming using a CTF challenge.

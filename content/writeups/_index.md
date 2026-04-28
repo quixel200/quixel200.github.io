@@ -4,6 +4,10 @@ draft = false
 title = 'Write-ups'
 +++
 
+## [UMCTF 2026 - vkexchange](/writeups/vkexchange)
+
+A stock market exchange program that's implemented using Vulkan compute shaders with a OOB vulnerability. Yup... just a single challenge, this one had me going insane but solving it was worth it.
+
 ## [Leveleffect 2024](https://github.com/quixel200/Leveleffect-2024-CTF-Writeups)
 
 The best CTF I've ever participated in, securing 28th place! It contains a lot of unique challenges that included blue teaming and SOC stuff instead of the typical red teaming. Learned quite a lot and I wish there were more CTF's like this.

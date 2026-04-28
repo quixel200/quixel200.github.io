@@ -240,13 +240,13 @@ settlement.comp vkexchange.c Makefile Dockerfile what the heck is Vulkan? Vulkan
 <li><code>menu_open_account</code> - opens an account, do I really need to explain this?</li>
 <li><code>menu_fund_account</code> - Funding it lets you write hex bytes into it</li>
 <li><code>menu_audit_account</code> - prints the bytes out to the screen</li>
-<li><code>menu_list_market</code> - Allows you to define how many <code>outcome_slots</code> and <code>memo_bytes</code> a new market should have.
-<code>menu_quote_position</code> - allow a user to submit their trading position to a specific index in the public Quote Book</li>
-<li><code>menu_settle</code> - calls <code>ckCmdDispatch</code>, telling the GPU to go brr, or the CPU in this case. (basically executes the copy instruction to copy from OracleBook to ClearingBook)</li>
+<li><code>menu_list_market</code> - Allows you to define how many <code>outcome_slots</code> and <code>memo_bytes</code> a new market should have.</li>
+<li><code>menu_quote_position</code> - allow a user to submit their trading position to a specific index in the public Quote Book</li>
+<li><code>menu_settle</code> - calls <code>vkCmdDispatch</code>, telling the GPU to go brr, or the CPU in this case. (basically executes the copy instruction to copy from OracleBook to ClearingBook)</li>
 </ul>
 <h1 id="settlementcomp">settlement.comp</h1>
 <p>This file is the compute shader, it&rsquo;s written in GLSL (OpenGL Shading Language) and is the code that runs on the GPU.
-When running the Makefile and compiling, the <code>glslangValidator</code> tool translates it into a GPU-readable bytecode format called SPIR-V and packs it into a <code>shader_spv.h</code> header file in the C++ program. Fascinating innit.</p>
+When running the Makefile and compiling, the <code>glslangValidator</code> tool translates it into a GPU-readable bytecode format called SPIR-V and packs it into a <code>shader_spv.h</code> header file in the C program. Fascinating innit.</p>
 <p><code>layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;</code> - forces the GPU to run this shader on a single threaded.</p>
 <h3 id="push-constants">Push constants</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="n">push_constant</span><span class="p">)</span> <span class="n">uniform</span> <span class="n">Push</span> <span class="p">{</span>
@@ -308,8 +308,9 @@ But if we look at the layout for <code>quote_book</code> created back in <code>c
 </span></span><span class="line"><span class="cl">            <span class="p">.</span><span class="n">descriptorCount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">// only 1 slot
 </span></span></span></code></pre></div><p>The <code>quote_book</code> only has 1 descriptor(index 0) so when we provide a large index, anything other than 0, it does the following:
 <code>destination_mem = address_of_quote_book + (index * size_of_descriptor(32 bytes))</code></p>
-<p>well that doesn&rsquo;t sound good&hellip;
-This means that we can write the address of our account&hellip; but where?</p>
+<p>The lavapipe driver packages our account pointer into a perfectly formatted 32-byte Descriptor object and writes that entire 32-byte chunk to our calculated destination.</p>
+<p>well that doesn&rsquo;t sound good&hellip;</p>
+<p>This means that we can write the address of our account&hellip; but where?</p>
 <h1 id="we-can-write-now-what">We can write! now what?</h1>
 <p>Remember that the descriptors are allocated in this order:
 <code>quote_book</code> -&gt; <code>markets</code> -&gt; <code>settlement_book</code></p>
@@ -351,7 +352,7 @@ $2 = 0x555555756098
 <p>All this data is stored on the heap, so let&rsquo;s try to shift the heap a little so that we somehow get a distance that is perfectly divisible by 32.
 We can do this by creating tiny markets that act as padding</p>
 <ul>
-<li>A market descriptor set header: 88 bytes</li>
+<li>A market descriptor set header: 88 bytes (this can be inferred from GDB)</li>
 <li>1 outcome slot (the descriptor): 32 bytes.</li>
 <li>Total size of a 1-slot market: 120 bytes</li>
 </ul>
@@ -360,7 +361,7 @@ We can do this by creating tiny markets that act as padding</p>
 Add 2 Markets: 24 + 240 = 264 bytes. (264 % 32 != 0)
 Add 3 Markets: 24 + 360 = 384 bytes. (384 % 32 == 0) !!!</p>
 <p>by allocating 3 markets, we can fix the alignment issue, so our new total distance is <code>1048856 + 360 = 1049216</code></p>
-<p><code>1049216/2 = 32788</code></p>
+<p><code>1049216/32 = 32788</code></p>
 <p>Perfect!</p>
 <h1 id="the-holy-sequence">The holy sequence</h1>
 <ul>

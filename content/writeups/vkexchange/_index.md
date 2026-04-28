@@ -51,14 +51,14 @@ If we look at the code for `init_vulkan()`, we notice two things that stand out:
 - `menu_fund_account` - Funding it lets you write hex bytes into it
 - `menu_audit_account` - prints the bytes out to the screen
 - `menu_list_market` - Allows you to define how many `outcome_slots` and `memo_bytes` a new market should have.
-`menu_quote_position` - allow a user to submit their trading position to a specific index in the public Quote Book
-- `menu_settle` - calls `ckCmdDispatch`, telling the GPU to go brr, or the CPU in this case. (basically executes the copy instruction to copy from OracleBook to ClearingBook)
+- `menu_quote_position` - allow a user to submit their trading position to a specific index in the public Quote Book
+- `menu_settle` - calls `vkCmdDispatch`, telling the GPU to go brr, or the CPU in this case. (basically executes the copy instruction to copy from OracleBook to ClearingBook)
 
 
 # settlement.comp
 
 This file is the compute shader, it's written in GLSL (OpenGL Shading Language) and is the code that runs on the GPU. 
-When running the Makefile and compiling, the `glslangValidator` tool translates it into a GPU-readable bytecode format called SPIR-V and packs it into a `shader_spv.h` header file in the C++ program. Fascinating innit.
+When running the Makefile and compiling, the `glslangValidator` tool translates it into a GPU-readable bytecode format called SPIR-V and packs it into a `shader_spv.h` header file in the C program. Fascinating innit.
 
 `layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;` - forces the GPU to run this shader on a single threaded.
 
@@ -161,9 +161,14 @@ But if we look at the layout for `quote_book` created back in `create_market_lay
 The `quote_book` only has 1 descriptor(index 0) so when we provide a large index, anything other than 0, it does the following: 
 `destination_mem = address_of_quote_book + (index * size_of_descriptor(32 bytes))`
 
+The lavapipe driver packages our account pointer into a perfectly formatted 32-byte Descriptor object and writes that entire 32-byte chunk to our calculated destination.
+
 
 well that doesn't sound good... 
+
+
 This means that we can write the address of our account... but where?
+
 
 # We can write! now what? 
 
@@ -242,7 +247,7 @@ We can't just provide 32776 as we would be off by 24 bytes from where we want to
 All this data is stored on the heap, so let's try to shift the heap a little so that we somehow get a distance that is perfectly divisible by 32.
 We can do this by creating tiny markets that act as padding 
 
-- A market descriptor set header: 88 bytes
+- A market descriptor set header: 88 bytes (this can be inferred from GDB)
 - 1 outcome slot (the descriptor): 32 bytes.
 - Total size of a 1-slot market: 120 bytes
 
@@ -254,7 +259,7 @@ Add 3 Markets: 24 + 360 = 384 bytes. (384 % 32 == 0) !!!
 
 by allocating 3 markets, we can fix the alignment issue, so our new total distance is `1048856 + 360 = 1049216`
 
-`1049216/2 = 32788`
+`1049216/32 = 32788`
 
 
 Perfect!

@@ -200,8 +200,8 @@
 <ul>
 <li><a href="/notes/reverse_engineering/assembly/number_system/">Number systems</a></li>
 <li><a href="/notes/reverse_engineering/assembly/registers/">Registers</a></li>
-<li><a href="notes/reverse_engineering/stack_and_heap">The stack and the heap</a></li>
-<li><a href="notes/reverse_engineering/writing_assembly">Writing assembly</a></li>
+<li><a href="/notes/reverse_engineering/assembly/stack_and_heap/">The stack and the heap</a></li>
+<li><a href="/notes/reverse_engineering/assembly/writing_assembly/">Writing assembly</a></li>
 <li><a href="notes/reverse_engineering/correlating_c">Correlating C and assembly</a></li>
 <li><a href="notes/reverse_engineering/disassemblers_and_decompilers">disassemblers and decompilers</a></li>
 <li><a href="/writeups/picoctf/crackme_100">Classic Crackme 0x100(picoCTF)</a></li>
@@ -210,6 +210,54 @@
     </div>
   
   <div class="posts">
+    
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="http://mycatpets.me/notes/reverse_engineering/assembly/writing_assembly/">Writing Assembly</a>
+        </h2>
+        <div class="post-meta"><time class="post-date">2026-05-28</time></div>
+
+        
+
+        
+
+
+        <div class="post-content">
+          
+            <p>Your CPU does not understand code the way you think it does, Instructions to the CPU are specified in something called the Assembly languange, and this assembly differs based on the architecture of the CPU. Most of the systems run on the x86 Architecture which was developed by Intel back when I was not even born. There&rsquo;s also the different architecture that&rsquo;s prominenet when it comes to mobile devices(and even some laptops, such as the M series of chips on a Mac) known as ARM.</p>
+          
+        </div>
+
+        
+           <div>
+            <a class="read-more button inline" href="/notes/reverse_engineering/assembly/writing_assembly/">[Read more]</a>
+          </div>
+        
+      </article>
+    
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="http://mycatpets.me/notes/reverse_engineering/assembly/stack_and_heap/">Stack and Heap</a>
+        </h2>
+        <div class="post-meta"><time class="post-date">2026-05-28</time></div>
+
+        
+
+        
+
+
+        <div class="post-content">
+          
+            <p>The stack is a region of memory which is used as a scratch space for your program, the register <code>rsp</code> points to the top of the stack. When your program starts, <code>rsp</code> points to data that represents the number of command line arguments passed to the program.</p>
+          
+        </div>
+
+        
+           <div>
+            <a class="read-more button inline" href="/notes/reverse_engineering/assembly/stack_and_heap/">[Read more]</a>
+          </div>
+        
+      </article>
     
       <article class="post on-list">
         <h2 class="post-title">

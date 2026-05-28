@@ -3,7 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://mycatpets.me/</loc>
-    <lastmod>2026-04-27T09:21:49+05:30</lastmod>
+    <lastmod>2026-05-28T17:38:32+05:30</lastmod>
+  </url><url>
+    <loc>http://mycatpets.me/notes/reverse_engineering/assembly/writing_assembly/</loc>
+    <lastmod>2026-05-28T17:38:32+05:30</lastmod>
+  </url><url>
+    <loc>http://mycatpets.me/notes/reverse_engineering/assembly/stack_and_heap/</loc>
+    <lastmod>2026-05-28T17:33:20+05:30</lastmod>
   </url><url>
     <loc>http://mycatpets.me/writeups/vkexchange/</loc>
     <lastmod>2026-04-27T09:21:49+05:30</lastmod>

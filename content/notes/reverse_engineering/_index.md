@@ -14,8 +14,8 @@ title = 'Reverse_engineering'
 
 - [Number systems](/notes/reverse_engineering/assembly/number_system)
 - [Registers](/notes/reverse_engineering/assembly/registers)
-- [The stack and the heap](notes/reverse_engineering/stack_and_heap)
-- [Writing assembly](notes/reverse_engineering/writing_assembly)
+- [The stack and the heap](notes/reverse_engineering/assembly/stack_and_heap)
+- [Writing assembly](notes/reverse_engineering/assembly/writing_assembly)
 - [Correlating C and assembly](notes/reverse_engineering/correlating_c)
 - [disassemblers and decompilers](notes/reverse_engineering/disassemblers_and_decompilers)
 - [Classic Crackme 0x100(picoCTF)](/writeups/picoctf/crackme_100)

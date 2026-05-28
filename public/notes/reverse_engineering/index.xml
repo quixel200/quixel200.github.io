@@ -6,8 +6,22 @@
     <description>Recent content in Reverse_engineering on quixel200</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Oct 2025 08:57:16 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2026 17:38:32 +0530</lastBuildDate>
     <atom:link href="http://mycatpets.me/notes/reverse_engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing Assembly</title>
+      <link>http://mycatpets.me/notes/reverse_engineering/assembly/writing_assembly/</link>
+      <pubDate>Thu, 28 May 2026 17:38:32 +0530</pubDate>
+      <guid>http://mycatpets.me/notes/reverse_engineering/assembly/writing_assembly/</guid>
+      <description>&lt;p&gt;Your CPU does not understand code the way you think it does, Instructions to the CPU are specified in something called the Assembly languange, and this assembly differs based on the architecture of the CPU. Most of the systems run on the x86 Architecture which was developed by Intel back when I was not even born. There&amp;rsquo;s also the different architecture that&amp;rsquo;s prominenet when it comes to mobile devices(and even some laptops, such as the M series of chips on a Mac) known as ARM.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stack and Heap</title>
+      <link>http://mycatpets.me/notes/reverse_engineering/assembly/stack_and_heap/</link>
+      <pubDate>Thu, 28 May 2026 17:33:20 +0530</pubDate>
+      <guid>http://mycatpets.me/notes/reverse_engineering/assembly/stack_and_heap/</guid>
+      <description>&lt;p&gt;The stack is a region of memory which is used as a scratch space for your program, the register &lt;code&gt;rsp&lt;/code&gt; points to the top of the stack. When your program starts, &lt;code&gt;rsp&lt;/code&gt; points to data that represents the number of command line arguments passed to the program.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Registers</title>
       <link>http://mycatpets.me/notes/reverse_engineering/assembly/registers/</link>
